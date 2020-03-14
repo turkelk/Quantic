@@ -10,52 +10,39 @@ namespace Quantic.Core.Test
         [Fact]
         public void ShoultThrowArgumentNullExceptionForServices()
         {
-            bool exceptionThrown = false;
-            string paramName = "services";
-
-            try
+            // Assert
+            Assert.Throws<ArgumentNullException>(()=> 
             {
-                var builder = new QuanticBuilder(null,  typeof(QuanticBuilderTest).Assembly );
-            }
-            catch (ArgumentNullException ex)
-            {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
-
-            Assert.True(exceptionThrown);
+                // Act
+                new QuanticBuilder(null,  typeof(QuanticBuilderTest).Assembly);
+            });
         }
 
         [Fact]
         public void ShoultThrowArgumentNullExceptionForAssemblies()
-        {
+        {  
             // Arrange
             var services = new ServiceCollection();
-            bool exceptionThrown = false;
-            string paramName = "assemblies";
-
-            try
-            {
-                // Act
-                var builder = new QuanticBuilder(services,  null);
-            }
-            catch (ArgumentNullException ex)
-            {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
 
             // Assert
-            Assert.True(exceptionThrown);
+            Assert.Throws<ArgumentNullException>(()=> 
+            {
+                // Act
+                new QuanticBuilder(services,  null);
+            });
         }        
 
         [Fact]
         public void ShouldSuccess()
         {
+            // Arrange
             var services = new ServiceCollection();
             var assemblies = new Assembly[] { typeof(QuanticBuilderTest).Assembly };
-            var builder = new QuanticBuilder(services,assemblies) ;
 
+            // Act
+            var builder = new QuanticBuilder(services,assemblies);
+            
+            // Assert
             Assert.Equal(services, builder.Services);
             Assert.Equal(assemblies, builder.Assemblies);
         }

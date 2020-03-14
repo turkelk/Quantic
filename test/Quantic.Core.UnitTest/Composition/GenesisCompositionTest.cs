@@ -8,35 +8,23 @@ namespace Quantic.Core.Test
     public class QuanticCompositionTest
     {
         [Fact]
-        public void Should_throw_argument_exception_for_null_assembly()
+        public void ShouldThrowArgumentExceptionForNullAssembly()
         {
-            bool exceptionThrown = false;
-            string paramName = "Assemblies";
-
-            try
+            // Assert
+            Assert.Throws<ArgumentException>(()=> 
             {
-                var builder = new ServiceCollection();
-
-                builder.AddQuantic(opt =>
+                new ServiceCollection().AddQuantic(opt =>
                 {
                     opt.Assemblies = null;
-                    //opt.AddAssemblies(null);
                 });
-            }
-            catch (ArgumentException ex)
-            {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
-
-            Assert.True(exceptionThrown);
+            });
         }
 
         [Fact]
-        public void Should_success_register_commandHandlers()
+        public void ShoulRegisterCommandHandlers()
         {
+            // Arrange
             var builder = new ServiceCollection();
-
             builder.AddQuantic(opt =>
             {
                 opt.Assemblies = new System.Reflection.Assembly[]
@@ -44,21 +32,21 @@ namespace Quantic.Core.Test
                     typeof(TestCompositonCommandHandler).Assembly
                 };
             });
-
+            
+            // Act
             var sp = builder.BuildServiceProvider();
-
             var commandHandler = sp.GetService<ICommandHandler<TestCompositonCommand>>();
-
+            
+            // Assert
             Assert.NotNull(commandHandler);
-
             Assert.Equal(typeof(TestCompositonCommandHandler).FullName, commandHandler.GetType().FullName);
         }
 
         [Fact]
-        public void Should_success_register_queryHandlers()
+        public void ShoulRegisterQueryHandlers()
         {
+            // Arrange
             var builder = new ServiceCollection();
-
             builder.AddQuantic(opt =>
             {
                 opt.Assemblies = new System.Reflection.Assembly[]
@@ -67,12 +55,12 @@ namespace Quantic.Core.Test
                 };
             });
 
+            // Act
             var sp = builder.BuildServiceProvider();
-
             var queryHandler = sp.GetService<IQueryHandler<TestCompositonQuery, string>>();
-
+            
+            // Assert
             Assert.NotNull(queryHandler);
-
             Assert.Equal(typeof(TestCompositonQueryHandler).FullName, queryHandler.GetType().FullName);
         }
 

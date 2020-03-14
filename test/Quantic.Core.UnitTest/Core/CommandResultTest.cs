@@ -8,268 +8,194 @@ namespace Quantic.Core.Test
     public class CommandResultTest
     {
         [Fact]
-        public void Should_throw_argument_null_exception_for_null_code()
-        {
-            bool exceptionThrown = false;
-            string paramName = "code";
-
-            try
+        public void ShouldThrowArgumentNullExpcetionForCode()
+        {  
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                string code = null;
-                string message = "message";
+                // Act
+                new CommandResult(null, "message");
+            });
 
-                var result = new CommandResult(code, message);
-            }
-            catch (ArgumentNullException ex)
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
-
-            Assert.True(exceptionThrown);
+                // Act
+                new CommandResult("", "message");
+            });            
         }
 
         [Fact]
-        public void Should_throw_argument_null_exception_for_empty_code()
+        public void ShouldThrowArgumentNullExpcetionForFailures()
         {
-            bool exceptionThrown = false;
-            string paramName = "code";
-
-            try
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                string code = "";
-                string message = "message";
-
-                var result = new CommandResult(code, message);
-            }
-            catch (ArgumentNullException ex)
-            {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
-
-            Assert.True(exceptionThrown);
-        }
-
-        [Fact]
-        public void Should_throw_argument_null_exception_for_null_failure_list()
-        {
-            bool exceptionThrown = false;
-
-            try
-            {
+                // Act
                 var failureList = new List<Failure>(null);
                 var result = new CommandResult(failureList);
-            }
-            catch (ArgumentNullException)
+            }); 
+
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                exceptionThrown = true;
-            }
-
-            Assert.True(exceptionThrown);
-        }
-
-        [Fact]
-        public void Should_throw_argument_null_exception_for_empty_failure_list()
-        {
-            bool exceptionThrown = false;
-            string paramName = "errors";
-
-            try
-            {
+                // Act
                 var failureList = new List<Failure>();
                 var result = new CommandResult(failureList);
-            }
-            catch (ArgumentException ex)
-            {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
-
-            Assert.True(exceptionThrown);
+            });             
         }
 
         [Fact]
-        public void Should_throw_argument_null_exception_for_empty_guid()
+        public void ShouldThrowArgumentNullExpcetionForGuid()
         {
-            bool exceptionThrown = false;
-            string paramName = "guid";
-
-            try
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                var guid = Guid.Empty;
-                var result = new CommandResult(guid);
-            }
-            catch (ArgumentNullException ex)
-            {
-                Assert.Equal(paramName, ex.ParamName);
-                exceptionThrown = true;
-            }
+                // Act
+                new CommandResult(Guid.Empty);
+            }); 
 
-            Assert.True(exceptionThrown);
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => 
+            {
+                // Act
+                new CommandResult(Guid.Empty,"code", "message");
+            });             
         }
 
         [Fact]
-        public void Should_throw_argument_null_exception_for_empty_guid_code_and_message()
+        public void ShouldSuccessWithGuid()
         {
-            bool exceptionThrown = false;
-            string paramName = "guid";
-            string code = "code";
-            string message = "message";
-
-            try
-            {
-                var guid = Guid.Empty;
-                var result = new CommandResult(guid,code,message);
-
-            }
-            catch (ArgumentNullException ex)
-            {
-                Assert.Equal(paramName, ex.ParamName);
-                exceptionThrown = true;
-            }
-
-            Assert.True(exceptionThrown);
-        }
-
-        [Fact]
-        public void Should_throw_argument_null_exception_for_empty_guid_code_and_null_message()
-        {
-            bool exceptionThrown = false;
-            string paramName = "guid";
-            string code = "code";
-            string message = null;
-
-            try
-            {
-                var guid = Guid.Empty;
-                var result = new CommandResult(guid,code,message);
-            }
-            catch (ArgumentNullException ex)
-            {
-                Assert.Equal(paramName, ex.ParamName);
-                exceptionThrown = true;
-            }
-
-            Assert.True(exceptionThrown);
-        }
-
-        [Fact]
-        public void Should_success_with_guid()
-        {
+            // Arrange
             var guid = Guid.NewGuid();
+
+            // Act
             var result = new CommandResult(guid);
 
+            // Assert
             Assert.True(result.IsSuccess);
             Assert.Equal(guid, result.Guid);
             Assert.Equal(Messages.Success, result.Code);
-
             Assert.False(result.HasError);
             Assert.False(result.Retry);
         }
 
                 [Fact]
-        public void Should_success_with_guid_code_and_message()
+        public void ShouldSuccessWithGuidCodeAndMessage()
         {
+            // Arrange
             var guid = Guid.NewGuid();
             string code = "code";
             string message = "message";
 
+            // Act
             var result = new CommandResult(guid,code,message);
 
+            // Assert
             Assert.True(result.IsSuccess);
             Assert.Equal(guid, result.Guid);
             Assert.Equal(message, result.Message);
             Assert.Equal(code, result.Code);
-
             Assert.False(result.HasError);
             Assert.False(result.Retry);
         }
 
         [Fact]
-        public void Should_success_with_static_success_propery()
+        public void ShouldSuccessWithstaticSuccessPropery()
         {
+            // Act
             var result = CommandResult.Success;
 
+            // Assert
             Assert.True(result.IsSuccess);
             Assert.Equal(Messages.Success, result.Code);
-
             Assert.False(result.HasError);
             Assert.False(result.Retry);
         }
 
         [Fact]
-        public void Should_success_with_code()
+        public void ShouldSuccessWithCode()
         {
+            // Arrange
             string code = "code";
+
+            // Act
             var result = new CommandResult(code);
 
+            // Assert
             Assert.True(result.IsSuccess);
             Assert.Equal(code, result.Code);
-
             Assert.False(result.HasError);
             Assert.False(result.Retry);
         }
 
         [Fact]
-        public void Should_success_with_code_and_null_message()
+        public void ShouldSuccessWithCodeAndNullMessage()
         {
+            // Arrange
             string code = "code";
             string message = null;
+
+            // Act
             var result = new CommandResult(code, message);
 
+            // Assert
             Assert.True(result.IsSuccess);
             Assert.Equal(code, result.Code);
             Assert.Equal(message, result.Message);
-
             Assert.False(result.HasError);
             Assert.False(result.Retry);
         }
 
         [Fact]
-        public void Should_success_with_code_and_empty_message()
+        public void ShouldSuccessWithCodeAndEmptyMessage()
         {
+            // Arrange            
             string code = "code";
             string message = "";
+
+            // Act
             var result = new CommandResult(code, message);
 
+            // Assert
             Assert.True(result.IsSuccess);
             Assert.Equal(code, result.Code);
             Assert.Equal(message, result.Message);
-
             Assert.False(result.HasError);
             Assert.False(result.Retry);
         }
 
         [Fact]
-        public void Should_success_with_failure_without_retry()
+        public void ShouldSuccessWithFailureWithoutRetry()
         {
+            // Arrange
             var failireCode = "failure_code";
             var failure = new Failure(failireCode);
 
+            // Act
             var result = new CommandResult(failure);
 
+            // Assert
             Assert.True(result.HasError);
             Assert.False(result.Retry);
             Assert.True(result.Errors.Count == 1
                 && result.Errors.Any(x => x.Code == failireCode));
-
             Assert.False(result.IsSuccess);
         }
 
         [Fact]
-        public void Should_success_with_failure_list_without_retry()
+        public void ShouldSuccessWithFailureListWithoutRetry()
         {
+            // Arrange
             var failireCode1 = "failure_code_1";
             var failure1 = new Failure(failireCode1);
-
             var failireCode2 = "failure_code_2";
             var failure2 = new Failure(failireCode2);
-
             var failures = new List<Failure> { failure1, failure2 };
 
+            // Act
             var result = new CommandResult(failures);
 
+            // Assert
             Assert.True(result.HasError);
             Assert.False(result.Retry);
 
@@ -281,32 +207,36 @@ namespace Quantic.Core.Test
         }
 
         [Fact]
-        public void Should_success_with_failure_and_false_retry()
+        public void ShouldSuccessWithFailureAndFalseRetry()
         {
+            // Arrange            
             var failireCode = "failure_code";
             var failure = new Failure(failireCode);
             bool retry = false;
 
+            // Act
             var result = new CommandResult(failure, retry: retry);
 
+            // Assert
             Assert.True(result.HasError);
             Assert.False(result.Retry);
-
             Assert.False(result.IsSuccess);
         }
 
         [Fact]
-        public void Should_success_with_failure_and_true_retry()
+        public void ShouldSuccessWithFailureAndTrueRetry()
         {
+            // Arrange                
             var failireCode = "failure_code";
             var failure = new Failure(failireCode);
             bool retry = true;
 
+            // Act
             var result = new CommandResult(failure, retry: retry);
 
+            // Assert
             Assert.True(result.HasError);
             Assert.True(result.Retry);
-
             Assert.False(result.IsSuccess);
         }
     }
