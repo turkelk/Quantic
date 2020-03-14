@@ -1,0 +1,211 @@
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/BaseController.cs
+FN:12,Quantic.Core.RequestContext Quantic.Web.BaseController::get_Context()
+FNDA:0,Quantic.Core.RequestContext Quantic.Web.BaseController::get_Context()
+DA:13,0
+DA:14,0
+DA:15,0
+DA:17,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:24,0
+DA:25,0
+DA:26,0
+BRDA:14,12,0,0
+BRDA:14,12,1,0
+BRDA:17,43,0,0
+BRDA:17,43,1,0
+BRDA:17,74,0,0
+BRDA:17,74,1,0
+BRDA:19,121,0,0
+BRDA:19,121,1,0
+LF:10
+LH:0
+BRF:8
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/CommandResultExtension.cs
+FN:9,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Accepted(Quantic.Core.CommandResult)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Accepted(Quantic.Core.CommandResult)
+DA:10,0
+DA:11,0
+DA:12,0
+BRDA:11,8,0,0
+BRDA:11,8,1,0
+FN:14,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Accepted(Quantic.Core.CommandResult,System.Uri)
+FNDA:1,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Accepted(Quantic.Core.CommandResult,System.Uri)
+DA:15,1
+DA:16,1
+DA:17,1
+BRDA:16,8,0,1
+BRDA:16,8,1,1
+FN:19,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Accepted(Quantic.Core.CommandResult,System.String)
+FNDA:6,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Accepted(Quantic.Core.CommandResult,System.String)
+DA:20,6
+DA:21,6
+DA:22,2
+DA:24,4
+DA:25,1
+DA:27,3
+DA:28,3
+BRDA:21,9,0,2
+BRDA:21,9,1,4
+BRDA:24,28,0,2
+BRDA:24,28,1,2
+BRDA:24,51,0,1
+BRDA:24,51,1,3
+BRDA:27,71,0,1
+BRDA:27,71,1,3
+FN:30,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Created(Quantic.Core.CommandResult,System.Uri)
+FNDA:1,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Created(Quantic.Core.CommandResult,System.Uri)
+DA:31,1
+DA:32,1
+DA:33,1
+BRDA:32,8,0,1
+BRDA:32,8,1,1
+FN:35,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Created(Quantic.Core.CommandResult,System.String)
+FNDA:6,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Created(Quantic.Core.CommandResult,System.String)
+DA:36,6
+DA:37,6
+DA:38,2
+DA:40,4
+DA:41,1
+DA:43,3
+DA:44,3
+BRDA:37,9,0,2
+BRDA:37,9,1,4
+BRDA:40,28,0,2
+BRDA:40,28,1,2
+BRDA:40,51,0,1
+BRDA:40,51,1,3
+BRDA:43,71,0,1
+BRDA:43,71,1,3
+FN:46,System.String Quantic.Web.CommandResultExtension::Location(Quantic.Core.CommandResult,System.String)
+FNDA:2,System.String Quantic.Web.CommandResultExtension::Location(Quantic.Core.CommandResult,System.String)
+DA:47,2
+DA:48,2
+DA:49,2
+FN:51,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::NoContent(Quantic.Core.CommandResult)
+FNDA:3,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::NoContent(Quantic.Core.CommandResult)
+DA:52,3
+DA:53,3
+DA:54,3
+BRDA:53,8,0,1
+BRDA:53,8,1,3
+FN:56,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Ok(Quantic.Core.CommandResult)
+FNDA:3,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::Ok(Quantic.Core.CommandResult)
+DA:57,3
+DA:58,3
+DA:59,3
+BRDA:58,8,0,1
+BRDA:58,8,1,3
+FN:61,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::ToResponse(Quantic.Core.CommandResult,System.Func`2<Quantic.Core.CommandResult,Microsoft.AspNetCore.Mvc.IActionResult>)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::ToResponse(Quantic.Core.CommandResult,System.Func`2<Quantic.Core.CommandResult,Microsoft.AspNetCore.Mvc.IActionResult>)
+DA:62,0
+DA:63,0
+DA:64,0
+FN:65,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::GetError(Quantic.Core.CommandResult)
+FNDA:14,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::GetError(Quantic.Core.CommandResult)
+DA:66,14
+DA:67,14
+DA:68,14
+DA:69,14
+DA:70,14
+BRDA:67,7,0,6
+BRDA:67,7,1,8
+FN:71,System.Void Quantic.Web.CommandResultExtension::.cctor()
+FNDA:1,System.Void Quantic.Web.CommandResultExtension::.cctor()
+DA:72,1
+LF:41
+LH:35
+BRF:28
+BRH:26
+FNF:11
+FNH:9
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/QueryResultExtension.cs
+FN:9,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::Ok(Quantic.Core.QueryResult`1<T>)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::Ok(Quantic.Core.QueryResult`1<T>)
+DA:10,0
+DA:11,0
+DA:12,0
+BRDA:11,8,0,0
+BRDA:11,8,1,0
+FN:14,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::ToResponse(Quantic.Core.QueryResult`1<T>,System.Func`2<Quantic.Core.QueryResult`1<T>,Microsoft.AspNetCore.Mvc.IActionResult>)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::ToResponse(Quantic.Core.QueryResult`1<T>,System.Func`2<Quantic.Core.QueryResult`1<T>,Microsoft.AspNetCore.Mvc.IActionResult>)
+DA:15,0
+DA:16,0
+DA:17,0
+FN:18,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::GetError(Quantic.Core.QueryResult`1<T>)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::GetError(Quantic.Core.QueryResult`1<T>)
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+BRDA:20,7,0,0
+BRDA:20,7,1,0
+FN:24,System.Object Quantic.Web.QueryResultExtension::AsQueryResponse(Quantic.Core.QueryResult`1<T>)
+FNDA:0,System.Object Quantic.Web.QueryResultExtension::AsQueryResponse(Quantic.Core.QueryResult`1<T>)
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+LF:17
+LH:0
+BRF:4
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/ResultExtension.cs
+FN:11,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.ResultExtension::Error(Quantic.Core.Result)
+FNDA:8,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.ResultExtension::Error(Quantic.Core.Result)
+DA:12,8
+DA:13,8
+DA:14,0
+DA:16,8
+DA:17,4
+DA:18,4
+DA:21,4
+DA:22,4
+DA:23,4
+DA:24,4
+DA:26,8
+BRDA:13,9,0,0
+BRDA:13,9,1,8
+BRDA:16,30,0,4
+BRDA:16,30,1,4
+FN:28,System.Boolean Quantic.Web.ResultExtension::HasValidationFaiulure(Quantic.Core.Result)
+FNDA:8,System.Boolean Quantic.Web.ResultExtension::HasValidationFaiulure(Quantic.Core.Result)
+DA:29,8
+DA:30,16
+DA:31,8
+BRDA:30,13,0,1
+BRDA:30,13,1,8
+FN:33,System.Object Quantic.Web.ResultExtension::AsResponseBody(System.Collections.Generic.IList`1<Quantic.Core.Failure>)
+FNDA:8,System.Object Quantic.Web.ResultExtension::AsResponseBody(System.Collections.Generic.IList`1<Quantic.Core.Failure>)
+DA:34,8
+DA:35,8
+DA:36,8
+DA:37,8
+DA:38,8
+DA:39,8
+DA:40,8
+DA:41,8
+DA:42,8
+DA:43,8
+DA:44,8
+BRDA:35,8,0,1
+BRDA:35,8,1,8
+LF:25
+LH:24
+BRF:8
+BRH:7
+FNF:3
+FNH:3
+end_of_record
