@@ -7,6 +7,8 @@ namespace Quantic.MassTransit.RabbitMq
 {
     public static class MasstransitExtension
     {
+        private const string quanticTraceId = "quantic-trace-id";
+
         public async static Task Publish<T>(this IBusControl busControl, 
             T message, 
             RequestContext context) where T : class 
@@ -21,7 +23,7 @@ namespace Quantic.MassTransit.RabbitMq
         }
         public static RequestContext RequestContext(this ConsumeContext consumerContext)
         {
-            return new RequestContext(consumerContext.Headers.Get<string>("trace-id"), 
+            return new RequestContext(consumerContext.Headers.Get<string>(quanticTraceId), 
                 consumerContext.Headers.GetAll().ToDictionary(kvp=>  kvp.Key, kvp => kvp.Value.ToString()));
         }                
     }

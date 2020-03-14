@@ -6,6 +6,7 @@ namespace Quantic.Web
 {
 public class BaseController : ControllerBase
 {
+        private const string traceIdKey = "quantic-trace-id";
         RequestContext requestContext;
         protected RequestContext Context
         {
@@ -16,12 +17,12 @@ public class BaseController : ControllerBase
 
                 var headers = Request.Headers.ToDictionary(k => k.Key, v => v.Value.First());
                 
-                if(!headers.ContainsKey("quantic-trace-id"))
+                if(!headers.ContainsKey(traceIdKey))
                 {
                     throw new TraceIdMissingExpcetion();
                 }  
                             
-                requestContext = new RequestContext(headers["quantic-trace-id"], headers);
+                requestContext = new RequestContext(headers[traceIdKey], headers);
                 return requestContext;
             }
         }
