@@ -1,0 +1,150 @@
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/Quantic/src/Quantic.Validation/Composition/CompositionValidationExtension.cs
+FN:11,Quantic.Core.IQuanticBuilder Quantic.Validation.CompositionValidationExtension::AddValidationDecorator(Quantic.Core.IQuanticBuilder,System.Action`1<Quantic.Validation.QuanticValidationOptions>)
+FNDA:2,Quantic.Core.IQuanticBuilder Quantic.Validation.CompositionValidationExtension::AddValidationDecorator(Quantic.Core.IQuanticBuilder,System.Action`1<Quantic.Validation.QuanticValidationOptions>)
+DA:12,2
+DA:13,2
+DA:14,2
+DA:16,2
+DA:18,2
+DA:20,2
+DA:21,2
+BRDA:14,8,1,0
+BRDA:14,8,0,2
+FN:23,Microsoft.Extensions.DependencyInjection.IServiceCollection Quantic.Validation.CompositionValidationExtension::AddValidators(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Reflection.Assembly[])
+FNDA:2,Microsoft.Extensions.DependencyInjection.IServiceCollection Quantic.Validation.CompositionValidationExtension::AddValidators(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Reflection.Assembly[])
+DA:24,2
+DA:25,10
+DA:26,2
+DA:27,82
+DA:28,38
+DA:29,38
+DA:30,4
+DA:31,4
+DA:32,4
+DA:33,38
+DA:34,2
+DA:41,2
+DA:42,2
+BRDA:25,107,1,2
+BRDA:27,96,1,38
+BRDA:29,44,0,4
+BRDA:29,44,1,38
+BRDA:27,96,0,2
+BRDA:25,107,0,2
+FN:44,Microsoft.Extensions.DependencyInjection.IServiceCollection Quantic.Validation.CompositionValidationExtension::AddDecorators(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNDA:2,Microsoft.Extensions.DependencyInjection.IServiceCollection Quantic.Validation.CompositionValidationExtension::AddDecorators(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+DA:45,2
+DA:46,30
+DA:47,12
+DA:48,12
+DA:49,2
+DA:50,2
+DA:51,2
+DA:52,2
+DA:53,2
+DA:55,2
+DA:66,12
+DA:67,2
+DA:68,2
+BRDA:46,103,1,12
+BRDA:48,33,0,2
+BRDA:50,49,0,2
+BRDA:50,49,1,2
+BRDA:48,33,1,12
+BRDA:46,103,0,2
+FN:70,System.Boolean Quantic.Validation.CompositionValidationExtension::IsAssignableTo(System.Reflection.TypeInfo,System.Reflection.TypeInfo)
+FNDA:76,System.Boolean Quantic.Validation.CompositionValidationExtension::IsAssignableTo(System.Reflection.TypeInfo,System.Reflection.TypeInfo)
+DA:71,76
+DA:72,76
+DA:73,4
+DA:74,4
+DA:75,4
+DA:76,4
+DA:78,4
+DA:79,4
+DA:80,4
+DA:82,0
+DA:84,72
+DA:86,72
+DA:87,76
+BRDA:72,9,0,4
+BRDA:78,33,0,4
+BRDA:78,33,1,0
+BRDA:72,9,1,72
+BRDA:84,49,0,34
+BRDA:84,49,1,38
+BRDA:86,68,0,38
+BRDA:86,68,1,34
+FN:36,System.Boolean Quantic.Validation.CompositionValidationExtension::<AddValidators>g__IsValidator|1_0(System.Type)
+FNDA:38,System.Boolean Quantic.Validation.CompositionValidationExtension::<AddValidators>g__IsValidator|1_0(System.Type)
+DA:37,38
+DA:38,38
+DA:39,38
+FN:57,System.Boolean Quantic.Validation.CompositionValidationExtension::<AddDecorators>g__ValidationEnabled|2_0(Microsoft.Extensions.DependencyInjection.ServiceDescriptor)
+FNDA:12,System.Boolean Quantic.Validation.CompositionValidationExtension::<AddDecorators>g__ValidationEnabled|2_0(Microsoft.Extensions.DependencyInjection.ServiceDescriptor)
+DA:58,12
+DA:59,12
+DA:60,12
+BRDA:59,8,0,0
+BRDA:59,8,1,12
+FN:62,System.Boolean Quantic.Validation.CompositionValidationExtension::<AddDecorators>g__IsRequestHandler|2_1(System.Type)
+FNDA:2,System.Boolean Quantic.Validation.CompositionValidationExtension::<AddDecorators>g__IsRequestHandler|2_1(System.Type)
+DA:63,2
+DA:64,2
+DA:65,2
+BRDA:64,7,0,2
+BRDA:64,7,1,0
+LF:55
+LH:54
+BRF:26
+BRH:22
+FNF:7
+FNH:7
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/Quantic/src/Quantic.Validation/Main/QuanticValidator.cs
+FN:7,Quantic.Core.RequestContext Quantic.Validation.QuanticValidator`1::get_Context()
+FNDA:3,Quantic.Core.RequestContext Quantic.Validation.QuanticValidator`1::get_Context()
+DA:8,3
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/Quantic/src/Quantic.Validation/Main/ValidationRequestHandlerDecorator.cs
+FN:12,System.Void Quantic.Validation.ValidationRequestHandlerDecorator`2::.ctor(Quantic.Core.IRequestHandler`2<TQuery,TResponse>,Quantic.Validation.QuanticValidator`1<TQuery>)
+FNDA:4,System.Void Quantic.Validation.ValidationRequestHandlerDecorator`2::.ctor(Quantic.Core.IRequestHandler`2<TQuery,TResponse>,Quantic.Validation.QuanticValidator`1<TQuery>)
+DA:13,4
+DA:14,4
+DA:15,4
+DA:16,4
+DA:17,4
+DA:18,4
+FN:28,Quantic.Core.Failure Quantic.Validation.ValidationRequestHandlerDecorator`2/<>c::<Handle>b__3_0(FluentValidation.Results.ValidationFailure)
+FNDA:5,Quantic.Core.Failure Quantic.Validation.ValidationRequestHandlerDecorator`2/<>c::<Handle>b__3_0(FluentValidation.Results.ValidationFailure)
+DA:29,5
+FN:20,System.Void Quantic.Validation.ValidationRequestHandlerDecorator`2/<Handle>d__3::MoveNext()
+FNDA:3,System.Void Quantic.Validation.ValidationRequestHandlerDecorator`2/<Handle>d__3::MoveNext()
+DA:21,3
+DA:22,3
+DA:24,3
+DA:26,3
+DA:27,3
+DA:28,3
+DA:30,3
+DA:31,3
+BRDA:21,14,0,3
+BRDA:24,93,1,3
+BRDA:26,206,0,1
+BRDA:26,253,1,1
+BRDA:26,206,1,2
+BRDA:26,377,0,1
+BRDA:26,377,1,2
+LF:15
+LH:15
+BRF:7
+BRH:7
+FNF:3
+FNH:3
+end_of_record

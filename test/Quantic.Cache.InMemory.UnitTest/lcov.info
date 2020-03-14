@@ -1,0 +1,313 @@
+SF:/Users/turkelgadirzade/Desktop/Projects/Framework/Quantic/src/Quantic.Cache.InMemory/Composition/CompositionInMemoryCacheExtension.cs
+FN:12,Quantic.Core.IQuanticBuilder Quantic.Cache.InMemory.CompositionInMemoryCacheExtension::AddMemoryCacheDecorator(Quantic.Core.IQuanticBuilder,System.Action`1<Quantic.Cache.InMemory.InMemoryCacheOption>)
+FNDA:4,Quantic.Core.IQuanticBuilder Quantic.Cache.InMemory.CompositionInMemoryCacheExtension::AddMemoryCacheDecorator(Quantic.Core.IQuanticBuilder,System.Action`1<Quantic.Cache.InMemory.InMemoryCacheOption>)
+DA:13,4
+DA:14,4
+DA:15,4
+DA:17,4
+DA:19,4
+DA:21,4
+DA:23,80
+DA:24,16
+DA:25,16
+DA:26,16
+DA:27,16
+DA:36,4
+DA:37,4
+BRDA:15,8,1,2
+BRDA:15,8,0,4
+BRDA:17,21,0,0
+BRDA:17,21,1,4
+BRDA:17,33,0,4
+BRDA:17,33,1,4
+BRDA:23,90,0,1
+BRDA:23,90,1,4
+BRDA:23,187,1,16
+BRDA:23,187,0,4
+FN:29,System.Boolean Quantic.Cache.InMemory.CompositionInMemoryCacheExtension::<AddMemoryCacheDecorator>g__ShouldDecorate|0_0(Microsoft.Extensions.DependencyInjection.ServiceDescriptor)
+FNDA:36,System.Boolean Quantic.Cache.InMemory.CompositionInMemoryCacheExtension::<AddMemoryCacheDecorator>g__ShouldDecorate|0_0(Microsoft.Extensions.DependencyInjection.ServiceDescriptor)
+DA:30,36
+DA:31,36
+DA:32,36
+DA:33,36
+DA:34,36
+BRDA:31,12,0,28
+BRDA:31,40,0,28
+BRDA:31,49,0,0
+BRDA:31,49,1,28
+BRDA:31,12,1,8
+BRDA:31,40,1,8
+LF:18
+LH:18
+BRF:16
+BRH:14
+FNF:2
+FNH:2
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Framework/Quantic/src/Quantic.Cache.InMemory/Composition/InMemoryCacheOption.cs
+FN:6,Microsoft.Extensions.Caching.Memory.MemoryCacheOptions Quantic.Cache.InMemory.InMemoryCacheOption::get_MemoryCacheOptions()
+FNDA:4,Microsoft.Extensions.Caching.Memory.MemoryCacheOptions Quantic.Cache.InMemory.InMemoryCacheOption::get_MemoryCacheOptions()
+DA:7,4
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Framework/Quantic/src/Quantic.Cache.InMemory/Main/CacheKeyProviderTypeException.cs
+FN:6,System.Void Quantic.Cache.InMemory.CacheKeyProviderTypeException::.ctor(System.String)
+FNDA:6,System.Void Quantic.Cache.InMemory.CacheKeyProviderTypeException::.ctor(System.String)
+DA:7,6
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Framework/Quantic/src/Quantic.Cache.InMemory/Main/CacheOption.cs
+FN:7,System.Double Quantic.Cache.InMemory.CacheOption::get_ExpireInSeconds()
+FNDA:16,System.Double Quantic.Cache.InMemory.CacheOption::get_ExpireInSeconds()
+DA:8,16
+FN:8,System.Type Quantic.Cache.InMemory.CacheOption::get_CacheKeyProviderType()
+FNDA:22,System.Type Quantic.Cache.InMemory.CacheOption::get_CacheKeyProviderType()
+DA:9,22
+FN:17,System.Boolean Quantic.Cache.InMemory.CacheOption::Equals(System.Object)
+FNDA:1,System.Boolean Quantic.Cache.InMemory.CacheOption::Equals(System.Object)
+DA:18,1
+DA:19,1
+DA:20,1
+DA:22,0
+DA:23,1
+BRDA:19,7,0,1
+BRDA:19,7,1,0
+FN:25,System.Boolean Quantic.Cache.InMemory.CacheOption::Equals(Quantic.Cache.InMemory.CacheOption)
+FNDA:4,System.Boolean Quantic.Cache.InMemory.CacheOption::Equals(Quantic.Cache.InMemory.CacheOption)
+DA:26,4
+DA:27,4
+DA:28,1
+DA:30,3
+DA:31,4
+BRDA:27,7,0,1
+BRDA:27,7,1,3
+BRDA:30,33,0,2
+BRDA:30,33,1,1
+FN:33,System.Int32 Quantic.Cache.InMemory.CacheOption::GetHashCode()
+FNDA:0,System.Int32 Quantic.Cache.InMemory.CacheOption::GetHashCode()
+DA:34,0
+DA:35,0
+DA:36,0
+FN:10,System.Void Quantic.Cache.InMemory.CacheOption::.ctor(System.Double,System.Type)
+FNDA:15,System.Void Quantic.Cache.InMemory.CacheOption::.ctor(System.Double,System.Type)
+DA:11,15
+DA:12,15
+DA:13,15
+DA:14,15
+DA:15,15
+LF:20
+LH:16
+BRF:6
+BRH:5
+FNF:6
+FNH:5
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Framework/Quantic/src/Quantic.Cache.InMemory/Main/DecorateInMemoryCacheAttribute.cs
+FN:7,System.Double Quantic.Cache.InMemory.DecorateInMemoryCacheAttribute::get_ExpireInSeconds()
+FNDA:11,System.Double Quantic.Cache.InMemory.DecorateInMemoryCacheAttribute::get_ExpireInSeconds()
+DA:8,11
+FN:8,System.Type Quantic.Cache.InMemory.DecorateInMemoryCacheAttribute::get_CacheKeyProviderType()
+FNDA:11,System.Type Quantic.Cache.InMemory.DecorateInMemoryCacheAttribute::get_CacheKeyProviderType()
+DA:9,11
+FN:10,System.Void Quantic.Cache.InMemory.DecorateInMemoryCacheAttribute::.ctor(System.Double,System.Type)
+FNDA:28,System.Void Quantic.Cache.InMemory.DecorateInMemoryCacheAttribute::.ctor(System.Double,System.Type)
+DA:11,28
+DA:12,28
+DA:13,28
+DA:14,28
+DA:15,28
+LF:7
+LH:7
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Framework/Quantic/src/Quantic.Cache.InMemory/Main/InMemoryCacheQueryHandlerDecorator.cs
+FN:59,System.String Quantic.Cache.InMemory.InMemoryCacheQueryHandlerDecorator`2::GetCacheEntryKey(TQuery,Quantic.Core.RequestContext,Quantic.Cache.InMemory.QueryInfo)
+FNDA:8,System.String Quantic.Cache.InMemory.InMemoryCacheQueryHandlerDecorator`2::GetCacheEntryKey(TQuery,Quantic.Core.RequestContext,Quantic.Cache.InMemory.QueryInfo)
+DA:60,8
+DA:62,8
+DA:63,8
+DA:64,8
+DA:67,8
+DA:68,8
+DA:69,6
+DA:72,2
+DA:73,2
+DA:74,2
+DA:77,6
+DA:78,6
+DA:80,0
+DA:81,0
+DA:82,0
+DA:84,6
+DA:85,6
+BRDA:62,20,0,8
+BRDA:62,20,1,0
+FN:14,System.Void Quantic.Cache.InMemory.InMemoryCacheQueryHandlerDecorator`2::.ctor(Quantic.Core.IQueryHandler`2<TQuery,TResponse>,Microsoft.Extensions.Caching.Memory.IMemoryCache,Quantic.Cache.InMemory.IQueryInfoProvider)
+FNDA:6,System.Void Quantic.Cache.InMemory.InMemoryCacheQueryHandlerDecorator`2::.ctor(Quantic.Core.IQueryHandler`2<TQuery,TResponse>,Microsoft.Extensions.Caching.Memory.IMemoryCache,Quantic.Cache.InMemory.IQueryInfoProvider)
+DA:15,6
+DA:16,6
+DA:17,6
+DA:18,6
+DA:19,6
+DA:20,6
+DA:21,6
+DA:22,6
+FN:39,System.Void Quantic.Cache.InMemory.InMemoryCacheQueryHandlerDecorator`2/<>c__DisplayClass4_0/<<Handle>b__0>d::MoveNext()
+FNDA:10,System.Void Quantic.Cache.InMemory.InMemoryCacheQueryHandlerDecorator`2/<>c__DisplayClass4_0/<<Handle>b__0>d::MoveNext()
+DA:40,10
+DA:41,10
+DA:43,10
+DA:44,6
+DA:45,6
+DA:48,10
+DA:49,10
+DA:50,10
+DA:51,10
+DA:53,10
+DA:54,10
+BRDA:40,8,0,4
+BRDA:41,71,1,4
+BRDA:43,187,1,4
+BRDA:48,237,0,4
+BRDA:48,237,1,4
+FN:24,System.Void Quantic.Cache.InMemory.InMemoryCacheQueryHandlerDecorator`2/<Handle>d__4::MoveNext()
+FNDA:10,System.Void Quantic.Cache.InMemory.InMemoryCacheQueryHandlerDecorator`2/<Handle>d__4::MoveNext()
+DA:25,10
+DA:26,10
+DA:29,10
+DA:30,2
+DA:32,2
+DA:35,8
+DA:37,8
+DA:39,6
+DA:42,6
+DA:46,6
+DA:47,6
+DA:52,6
+DA:56,6
+DA:57,8
+BRDA:25,14,0,10
+BRDA:29,156,0,8
+BRDA:29,156,1,2
+BRDA:29,182,0,2
+BRDA:32,239,1,2
+BRDA:29,182,1,8
+BRDA:39,442,0,4
+BRDA:25,14,1,4
+BRDA:39,442,1,6
+LF:50
+LH:47
+BRF:16
+BRH:15
+FNF:4
+FNH:4
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Framework/Quantic/src/Quantic.Cache.InMemory/Main/MemoryCacheExtension.cs
+FN:10,T Quantic.Cache.InMemory.MemoryCacheExtension::GetOrAdd(Microsoft.Extensions.Caching.Memory.IMemoryCache,System.String,System.Func`1<T>)
+FNDA:0,T Quantic.Cache.InMemory.MemoryCacheExtension::GetOrAdd(Microsoft.Extensions.Caching.Memory.IMemoryCache,System.String,System.Func`1<T>)
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+FN:20,System.Threading.Tasks.Task`1<T> Quantic.Cache.InMemory.MemoryCacheExtension::GetOrAddAsync(Microsoft.Extensions.Caching.Memory.IMemoryCache,System.String,System.Func`2<Microsoft.Extensions.Caching.Memory.ICacheEntry,System.Threading.Tasks.Task`1<T>>)
+FNDA:6,System.Threading.Tasks.Task`1<T> Quantic.Cache.InMemory.MemoryCacheExtension::GetOrAddAsync(Microsoft.Extensions.Caching.Memory.IMemoryCache,System.String,System.Func`2<Microsoft.Extensions.Caching.Memory.ICacheEntry,System.Threading.Tasks.Task`1<T>>)
+DA:21,6
+DA:22,10
+DA:23,14
+DA:24,14
+DA:25,14
+DA:26,6
+LF:12
+LH:6
+BRF:8
+BRH:6
+FNF:2
+FNH:1
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Framework/Quantic/src/Quantic.Cache.InMemory/Main/QueryInfoProvider.cs
+FN:51,Quantic.Cache.InMemory.QueryInfo Quantic.Cache.InMemory.QueryInfoProvider::GetQueryInfo(System.String)
+FNDA:12,Quantic.Cache.InMemory.QueryInfo Quantic.Cache.InMemory.QueryInfoProvider::GetQueryInfo(System.String)
+DA:52,12
+DA:53,12
+DA:54,12
+BRDA:53,13,0,2
+BRDA:53,13,1,10
+FN:43,System.Boolean Quantic.Cache.InMemory.QueryInfoProvider::<.ctor>g__IsQueryHandler|1_0(System.Type)
+FNDA:14,System.Boolean Quantic.Cache.InMemory.QueryInfoProvider::<.ctor>g__IsQueryHandler|1_0(System.Type)
+DA:44,14
+DA:45,14
+DA:46,28
+DA:47,28
+DA:48,14
+BRDA:45,13,0,1
+BRDA:45,13,1,14
+FN:10,System.Void Quantic.Cache.InMemory.QueryInfoProvider::.ctor(System.Collections.Generic.IEnumerable`1<System.Type>)
+FNDA:10,System.Void Quantic.Cache.InMemory.QueryInfoProvider::.ctor(System.Collections.Generic.IEnumerable`1<System.Type>)
+DA:11,10
+DA:13,10
+DA:14,10
+DA:18,58
+DA:19,14
+DA:20,14
+DA:21,14
+DA:22,14
+DA:24,14
+DA:25,28
+DA:26,28
+DA:27,14
+DA:28,14
+DA:29,14
+DA:31,14
+DA:32,14
+DA:33,14
+DA:34,14
+DA:35,14
+DA:36,14
+DA:37,14
+DA:38,14
+DA:39,14
+DA:40,14
+DA:41,14
+DA:49,10
+BRDA:18,204,1,14
+BRDA:20,50,0,14
+BRDA:24,75,0,1
+BRDA:24,75,1,14
+BRDA:31,162,0,6
+BRDA:31,162,1,8
+BRDA:20,50,1,14
+BRDA:18,204,0,10
+FN:59,System.String Quantic.Cache.InMemory.QueryInfo::get_Name()
+FNDA:16,System.String Quantic.Cache.InMemory.QueryInfo::get_Name()
+DA:60,16
+FN:60,System.Boolean Quantic.Cache.InMemory.QueryInfo::get_HasCache()
+FNDA:24,System.Boolean Quantic.Cache.InMemory.QueryInfo::get_HasCache()
+DA:61,24
+FN:61,System.Type Quantic.Cache.InMemory.QueryInfo::get_HandlerType()
+FNDA:16,System.Type Quantic.Cache.InMemory.QueryInfo::get_HandlerType()
+DA:62,16
+FN:62,Quantic.Cache.InMemory.CacheOption Quantic.Cache.InMemory.QueryInfo::get_CacheOption()
+FNDA:40,Quantic.Cache.InMemory.CacheOption Quantic.Cache.InMemory.QueryInfo::get_CacheOption()
+DA:63,40
+LF:38
+LH:38
+BRF:16
+BRH:14
+FNF:7
+FNH:7
+end_of_record

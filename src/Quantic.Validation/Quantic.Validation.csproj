@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageVersion>2.0.1</PackageVersion>
+    <Authors>Turkel Gadirzade</Authors>
+    <Description>Quantic framework validation extension</Description>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageId>Quantic.Validation</PackageId>     
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.5.0" />
+    <PackageReference Include="Quantic.Core" Version="2.0.1" />
+  </ItemGroup> 
+
+<PropertyGroup>
+  <LangVersion>8.0</LangVersion>
+</PropertyGroup>
+
+</Project>
