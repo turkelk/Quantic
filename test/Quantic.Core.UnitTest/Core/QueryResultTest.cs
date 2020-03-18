@@ -7,143 +7,106 @@ namespace Quantic.Core.Test.Core
 {
     public class QueryResultTest
     {
-        [Fact]
-        public void Should_throw_argument_null_exception_for_null_code()
+       [Fact]
+        public void ShouldThrowArgumentNullExpcetionForCode()
         {
-            bool exceptionThrown = false;
-            string paramName = "code";
-
-            try
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                string code = null;
-                string message = "message";
-                var data = 1;
+                // Act
+                var result = new QueryResult<int>(1, code: null, "message");
+            });
 
-                var result = new QueryResult<int>(data, code, message);
-            }
-            catch (ArgumentNullException ex)
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
-
-            Assert.True(exceptionThrown);
+                // Act
+                var result = new QueryResult<int>(1, code: "", "message");
+            });  
         }
 
         [Fact]
-        public void Should_throw_argument_null_exception_for_empty_code()
+        public void ShouldThrowArgumentNullExpcetionForFailures()
         {
-            bool exceptionThrown = false;
-            string paramName = "code";
-
-            try
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                string code = "";
-                string message = "message";
-                var data = 1;
-
-                var result = new QueryResult<int>(data, code, message);
-            }
-            catch (ArgumentNullException ex)
-            {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
-
-            Assert.True(exceptionThrown);
-        }
-
-        [Fact]
-        public void Should_throw_argument_null_exception_for_null_failure_list()
-        {
-            bool exceptionThrown = false;
-
-            try
-            {
+                // Act
                 var failureList = new List<Failure>(null);
                 var result = new QueryResult<int>(failureList);
-            }
-            catch (ArgumentNullException)
+            }); 
+
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                exceptionThrown = true;
-            }
-
-            Assert.True(exceptionThrown);
-        }
-
-        [Fact]
-        public void Should_throw_argument_null_exception_for_empty_failure_list()
-        {
-            bool exceptionThrown = false;
-            string paramName = "errors";
-
-            try
-            {
+                // Act
                 var failureList = new List<Failure>();
                 var result = new QueryResult<int>(failureList);
-            }
-            catch (ArgumentException ex)
-            {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
-
-            Assert.True(exceptionThrown);
+            });             
         }
 
-
         [Fact]
-        public void Should_success_with_result()
+        public void ShouldSuccessWithData()
         {
+            // Arrange
             int result = 1;
+
+            // Act
             var queryResult = new QueryResult<int>(result);
 
+            // Assert
             Assert.True(queryResult.IsSuccess);
             Assert.Equal(Messages.Success, queryResult.Code);
-
             Assert.False(queryResult.HasError);
             Assert.False(queryResult.Retry);
         }
 
         [Fact]
-        public void Should_success_with_null_result()
+        public void ShouldSuccessWithNullResult()
         {
+            // Arrange
             int? result = null;
+
+            // Act
             var queryResult = new QueryResult<int?>(result);
 
+            // Assert
             Assert.True(queryResult.IsSuccess);
             Assert.Equal(Messages.Success, queryResult.Code);
             Assert.Equal(result, queryResult.Result);
-
             Assert.False(queryResult.HasError);
             Assert.False(queryResult.Retry);
         }
 
         [Fact]
-        public void Should_success_with_code_and_result()
+        public void ShouldSuccessWithCodeAndResult()
         {
+            // Arrange
             string code = "code";
             int result = 1;
 
+            // Act
             var queryResult = new QueryResult<int>(result, code);
 
+            // Assert
             Assert.True(queryResult.IsSuccess);
             Assert.Equal(result, queryResult.Result);
             Assert.Equal(code, queryResult.Code);
-
             Assert.False(queryResult.HasError);
             Assert.False(queryResult.Retry);
         }
 
         [Fact]
-        public void Should_success_with_result_code_and_null_message()
+        public void ShouldSuccessWithResultCodeAndNullMessage()
         {
+            // Arrange
             string code = "code";
             string message = null;
             int result = 1;
 
+            // Act
             var queryResult = new QueryResult<int>(result, code,message);
 
+            // Assert
             Assert.True(queryResult.IsSuccess);
             Assert.Equal(result, queryResult.Result);
             Assert.Equal(code, queryResult.Code);
@@ -154,31 +117,36 @@ namespace Quantic.Core.Test.Core
         }
 
         [Fact]
-        public void Should_success_with_result_code_and_empty_message()
+        public void ShouldSuccessWithResultCodeAndEmptyMessage()
         {
+            // Arrange
             string code = "code";
             string message = "";
             int result = 1;
 
+            // Act
             var queryResult = new QueryResult<int>(result, code, message);
 
+            // Assert
             Assert.True(queryResult.IsSuccess);
             Assert.Equal(result, queryResult.Result);
             Assert.Equal(code, queryResult.Code);
             Assert.Equal(message, queryResult.Message);
-
             Assert.False(queryResult.HasError);
             Assert.False(queryResult.Retry);
         }
 
         [Fact]
-        public void Should_success_with_failure_without_retry()
+        public void ShouldSuccessWithFailureWithoutRetry()
         {
+            // Arrange
             var failireCode = "failure_code";
             var failure = new Failure(failireCode);
 
+            // Act
             var result = new QueryResult<int>(failure);
 
+            // Assert
             Assert.True(result.HasError);
             Assert.False(result.Retry);
             Assert.True(result.Errors.Count == 1
@@ -188,55 +156,58 @@ namespace Quantic.Core.Test.Core
         }
 
         [Fact]
-        public void Should_success_with_failure_list_without_retry()
+        public void ShouldSuccessWithFailureListWithoutRetry()
         {
+            // Arrange
             var failireCode1 = "failure_code_1";
             var failure1 = new Failure(failireCode1);
-
             var failireCode2 = "failure_code_2";
             var failure2 = new Failure(failireCode2);
-
             var failures = new List<Failure> { failure1, failure2 };
 
+            // Act
             var result = new QueryResult<int>(failures);
 
+            // Assert
             Assert.True(result.HasError);
             Assert.False(result.Retry);
-
             Assert.True(result.Errors.Count == 2
                 && result.Errors.Any(x => x.Code == failireCode1)
                 && result.Errors.Any(x => x.Code == failireCode2));
-
             Assert.False(result.IsSuccess);
         }
 
         [Fact]
-        public void Should_success_with_failure_and_false_retry()
+        public void ShouldSuccessWithFailureAndFalseRetry()
         {
+            // Arrange
             var failireCode = "failure_code";
             var failure = new Failure(failireCode);
             bool retry = false;
 
+            // Act
             var result = new QueryResult<int>(failure, retry: retry);
 
+            // Assert
             Assert.True(result.HasError);
             Assert.False(result.Retry);
-
             Assert.False(result.IsSuccess);
         }
 
         [Fact]
-        public void Should_success_with_failure_and_true_retry()
+        public void ShouldSuccessWithFailureAndTrueRetry()
         {
+            // Arrange
             var failireCode = "failure_code";
             var failure = new Failure(failireCode);
             bool retry = true;
 
+            // Act
             var result = new QueryResult<int>(failure, retry: retry);
 
+            // Assert
             Assert.True(result.HasError);
             Assert.True(result.Retry);
-
             Assert.False(result.IsSuccess);
         }
     }

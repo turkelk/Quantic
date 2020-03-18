@@ -6,76 +6,62 @@ namespace Quantic.Core.Test
     public class FailureTest
     {
         [Fact]
-        public void Should_throw_argument_null_exception_for_null_code()
+        public void ShouldThrowArgumentNullExpcetionForCode()
         {
-            bool exceptionThrown = false;
-            string paramName = "code";
-
-            try
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                string code = null;
-                string message = "message";
+                // Act
+                new Failure(null, "message");
+            });
 
-                var failure = new Failure(code, message);
-            }
-            catch (ArgumentNullException ex)
+            Assert.Throws<ArgumentNullException>(() => 
             {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
-
-            Assert.True(exceptionThrown);
+                // Act
+                new Failure("", "message");
+            }); 
         }
 
         [Fact]
-        public void Should_throw_argument_null_exception_for_empty_code()
+        public void ShouldSuccessWithCode()
         {
-            bool exceptionThrown = false;
-            string paramName = "code";
-
-            try
-            {
-                string code = "";
-                string message = "message";
-
-                var failure = new Failure(code, message);
-            }
-            catch (ArgumentNullException ex)
-            {
-                exceptionThrown = true;
-                Assert.Equal(paramName, ex.ParamName);
-            }
-
-            Assert.True(exceptionThrown);
-        }
-
-        [Fact]
-        public void Should_success_with_code()
-        {
+            // Arrange
             string code = "code";
+
+            // Act
             var failure = new Failure(code);
+
+            // Assert
             Assert.Equal(code, failure.Code);
             Assert.Equal(default, failure.Message);
         }
 
         [Fact]
-        public void Should_success_with_code_and_null_message()
+        public void ShouldSuccessWithCodeAndNullMessage()
         {
+            // Arrange
             string code = "code";
             string message = null;
 
+            // Act
             var failure = new Failure(code, message);
+
+            // Assert
             Assert.Equal(code, failure.Code);
             Assert.Equal(message, failure.Message);
         }
 
         [Fact]
-        public void Should_success_with_code_and_empty_message()
+        public void ShouldSuccessWithCodeAndEmptyMessage()
         {
+            // Arrange
             string code = "code";
             string message = "";
 
+            // Act
             var failure = new Failure(code, message);
+
+            // Assert
             Assert.Equal(code, failure.Code);
             Assert.Equal(message, failure.Message);
         }

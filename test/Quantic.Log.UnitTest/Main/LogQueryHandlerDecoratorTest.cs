@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using Quantic.Core;
@@ -22,6 +23,7 @@ namespace Genesis.Log.Test
             mockOptions.Setup(x=>x.Value).Returns(logSettings);      
 
             Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();  
+            Mock<ILogger<TestQuery>> mockLogger = new Mock<ILogger<TestQuery>>(); 
             Mock<IQueryHandler<TestQuery, string>> mockQueryHandler = new Mock<IQueryHandler<TestQuery, string>>();
             var query = new TestQuery();
 
@@ -29,7 +31,7 @@ namespace Genesis.Log.Test
             .Setup(x=>x.Handle(query,It.IsAny<RequestContext>()))
             .ReturnsAsync(new QueryResult<string>("OK"));     
 
-            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, mockOptions.Object);
+            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, mockOptions.Object, mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(query, Helper.Context);
@@ -50,7 +52,8 @@ namespace Genesis.Log.Test
             Mock<IOptionsSnapshot<LogSettings>> mockOptions = new Mock<IOptionsSnapshot<LogSettings>>();     
             mockOptions.Setup(x=>x.Value).Returns(logSettings);      
 
-            Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();  
+            Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>(); 
+            Mock<ILogger<TestQuery>> mockLogger = new Mock<ILogger<TestQuery>>();              
             Mock<IQueryHandler<TestQuery, string>> mockQueryHandler = new Mock<IQueryHandler<TestQuery, string>>();
             var query = new TestQuery();
 
@@ -58,7 +61,7 @@ namespace Genesis.Log.Test
             .Setup(x=>x.Handle(query,It.IsAny<RequestContext>()))
             .ReturnsAsync(new QueryResult<string>("OK"));     
 
-            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, mockOptions.Object);
+            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, mockOptions.Object, mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(query, Helper.Context);
@@ -80,7 +83,8 @@ namespace Genesis.Log.Test
             Mock<IOptionsSnapshot<LogSettings>> mockOptions = new Mock<IOptionsSnapshot<LogSettings>>();     
             mockOptions.Setup(x=>x.Value).Returns(logSettings);      
 
-            Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();  
+            Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();
+            Mock<ILogger<TestQuery>> mockLogger = new Mock<ILogger<TestQuery>>();               
             Mock<IQueryHandler<TestQuery, string>> mockQueryHandler = new Mock<IQueryHandler<TestQuery, string>>();
             var query = new TestQuery();
 
@@ -88,7 +92,7 @@ namespace Genesis.Log.Test
             .Setup(x=>x.Handle(query,It.IsAny<RequestContext>()))
             .ReturnsAsync(new QueryResult<string>("OK"));     
 
-            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, mockOptions.Object);
+            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, mockOptions.Object, mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(query, Helper.Context);
@@ -108,6 +112,7 @@ namespace Genesis.Log.Test
             mockOptions.Setup(x=>x.Value).Returns(logSettings);      
 
             Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();  
+            Mock<ILogger<TestQuery>> mockLogger = new Mock<ILogger<TestQuery>>();             
             Mock<IQueryHandler<TestQuery, string>> mockQueryHandler = new Mock<IQueryHandler<TestQuery, string>>();
             var query = new TestQuery();
 
@@ -115,7 +120,7 @@ namespace Genesis.Log.Test
             .Setup(x=>x.Handle(query,It.IsAny<RequestContext>()))
             .ThrowsAsync(new Exception());      
 
-            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, mockOptions.Object);
+            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, mockOptions.Object, mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(query, Helper.Context);

@@ -14,12 +14,7 @@ namespace Quantic.Log
 
         public void Log(RequestLog log)
         {
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, JsonConvert.SerializeObject(log,
-                    new JsonSerializerSettings
-                    {
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                        ContractResolver = new SensitiveDataResolver()
-                    }));
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, JsonConvert.SerializeObject(log,SerializerSettings.Value));
         }
     }
 }

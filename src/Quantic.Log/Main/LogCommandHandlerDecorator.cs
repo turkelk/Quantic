@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Quantic.Core;
 using Quantic.Log.Util;
 
@@ -12,14 +14,17 @@ namespace Quantic.Log
         
         private readonly IRequestLogger requestLogger;
         private readonly ICommandHandler<TCommand> decoratedRequestHandler;
+        private readonly ILogger<TCommand> logger;
         private readonly LogSettings logSettings;
 
         public LogCommandHandlerDecorator(IRequestLogger requestLogger,
             ICommandHandler<TCommand> decoratedRequestHandler,
-            IOptionsSnapshot<LogSettings> logSettingsOption)
+            IOptionsSnapshot<LogSettings> logSettingsOption,
+            ILogger<TCommand> logger)
         {
             this.requestLogger = requestLogger;
             this.decoratedRequestHandler = decoratedRequestHandler;
+            this.logger = logger;
             this.logSettings = logSettingsOption.Value;
         }
 
@@ -27,6 +32,8 @@ namespace Quantic.Log
         {
             CommandResult result = null;
             DateTime requestDate = DateTime.UtcNow;
+            
+            using(logger.BeginScope($"trace-id:{context.TraceId}"))
 
             try
             {
@@ -53,9 +60,10 @@ namespace Quantic.Log
                         ResponseDate = DateTime.UtcNow,
                         Result = result.HasError ? Result.Error : Result.Success
                         //UserCode = context.CorrelationContext.UserId
-                    });
+                    });                   
                 }
             }
+
             return result;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using Quantic.Core;
@@ -17,11 +18,11 @@ namespace Genesis.Log.Test
         {
             // Arrange 
             LogSettings logSettings = null;
-
             Mock<IOptionsSnapshot<LogSettings>> mockOptions = new Mock<IOptionsSnapshot<LogSettings>>();     
             mockOptions.Setup(x=>x.Value).Returns(logSettings);      
-
+            
             Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();  
+            Mock<ILogger<TestCommand>> mockLogger = new Mock<ILogger<TestCommand>>();
             Mock<ICommandHandler<TestCommand>> mockCommandHandler = new Mock<ICommandHandler<TestCommand>>();
             var command = new TestCommand();
 
@@ -29,7 +30,7 @@ namespace Genesis.Log.Test
             .Setup(x=>x.Handle(command,It.IsAny<RequestContext>()))
             .ReturnsAsync(CommandResult.Success);     
 
-            var decorator = new LogCommandHandlerDecorator<TestCommand>(mockRequestLogger.Object, mockCommandHandler.Object, mockOptions.Object);
+            var decorator = new LogCommandHandlerDecorator<TestCommand>(mockRequestLogger.Object, mockCommandHandler.Object, mockOptions.Object,mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(command, Helper.Context);
@@ -51,7 +52,8 @@ namespace Genesis.Log.Test
             Mock<IOptionsSnapshot<LogSettings>> mockOptions = new Mock<IOptionsSnapshot<LogSettings>>();     
             mockOptions.Setup(x=>x.Value).Returns(logSettings);      
 
-            Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();  
+            Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>(); 
+            Mock<ILogger<TestCommand>> mockLogger = new Mock<ILogger<TestCommand>>(); 
             Mock<ICommandHandler<TestCommand>> mockCommandHandler = new Mock<ICommandHandler<TestCommand>>();
             var command = new TestCommand();
 
@@ -59,7 +61,7 @@ namespace Genesis.Log.Test
             .Setup(x=>x.Handle(command,It.IsAny<RequestContext>()))
             .ReturnsAsync(CommandResult.Success);     
 
-            var decorator = new LogCommandHandlerDecorator<TestCommand>(mockRequestLogger.Object, mockCommandHandler.Object, mockOptions.Object);
+            var decorator = new LogCommandHandlerDecorator<TestCommand>(mockRequestLogger.Object, mockCommandHandler.Object, mockOptions.Object,mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(command, Helper.Context);
@@ -82,6 +84,7 @@ namespace Genesis.Log.Test
             mockOptions.Setup(x=>x.Value).Returns(logSettings);      
 
             Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();  
+            Mock<ILogger<TestCommand>> mockLogger = new Mock<ILogger<TestCommand>>(); 
             Mock<ICommandHandler<TestCommand>> mockCommandHandler = new Mock<ICommandHandler<TestCommand>>();
             var command = new TestCommand();
 
@@ -89,7 +92,7 @@ namespace Genesis.Log.Test
             .Setup(x=>x.Handle(command,It.IsAny<RequestContext>()))
             .ReturnsAsync(CommandResult.Success);     
 
-            var decorator = new LogCommandHandlerDecorator<TestCommand>(mockRequestLogger.Object, mockCommandHandler.Object, mockOptions.Object);
+            var decorator = new LogCommandHandlerDecorator<TestCommand>(mockRequestLogger.Object, mockCommandHandler.Object, mockOptions.Object,mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(command, Helper.Context);
@@ -108,6 +111,7 @@ namespace Genesis.Log.Test
             mockOptions.Setup(x=>x.Value).Returns(logSettings);      
 
             Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();  
+            Mock<ILogger<TestCommand>> mockLogger = new Mock<ILogger<TestCommand>>();             
             Mock<ICommandHandler<TestCommand>> mockCommandHandler = new Mock<ICommandHandler<TestCommand>>();
             var command = new TestCommand();
 
@@ -115,7 +119,7 @@ namespace Genesis.Log.Test
             .Setup(x=>x.Handle(command,It.IsAny<RequestContext>()))
             .ThrowsAsync(new Exception());    
 
-            var decorator = new LogCommandHandlerDecorator<TestCommand>(mockRequestLogger.Object, mockCommandHandler.Object, mockOptions.Object);
+            var decorator = new LogCommandHandlerDecorator<TestCommand>(mockRequestLogger.Object, mockCommandHandler.Object, mockOptions.Object,mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(command, Helper.Context);
