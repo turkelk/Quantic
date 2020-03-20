@@ -33,7 +33,6 @@ namespace Identity.Api
             services.AddQuantic(cfg=> {
                 cfg.Assemblies = assemblies;
             })
-            .AddMemoryCacheDecorator()
             .AddValidationDecorator()
             .AddLogDecorator()
             .AddQuanticMassTransit((provider, cfg) => {

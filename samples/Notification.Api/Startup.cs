@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Quantic.Cache.InMemory;
 using Quantic.Core;
 using Quantic.Log;
 using Quantic.MassTransit.RabbitMq;
@@ -29,6 +30,7 @@ namespace Notification.Api
             services.AddQuantic(cfg=> {
                 cfg.Assemblies = assemblies;
             })
+            .AddMemoryCacheDecorator()
             .AddValidationDecorator()
             .AddLogDecorator()
             .AddQuanticMassTransit((provider, cfg) => {

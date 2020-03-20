@@ -10,5 +10,6 @@ namespace Notification.Api
             
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<MailTemplate> MailTemplates { get; set; }
     }
 }

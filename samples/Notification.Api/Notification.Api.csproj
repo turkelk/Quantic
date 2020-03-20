@@ -10,12 +10,9 @@
     <PackageReference Include="Quantic.Core" Version="2.0.1" />
     <PackageReference Include="Quantic.Log" Version="2.0.1" />   
     <PackageReference Include="Quantic.Validation" Version="2.0.1" />    
-    <PackageReference Include="Quantic.MassTransit.RabbitMq" Version="2.0.1" />     
+    <PackageReference Include="Quantic.MassTransit.RabbitMq" Version="2.0.1" /> 
+    <PackageReference Include="Quantic.Cache.InMemory" Version="2.0.1" />     
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.2" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
   </ItemGroup>

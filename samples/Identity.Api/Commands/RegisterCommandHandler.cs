@@ -38,6 +38,14 @@ namespace Identity.Api.Commands
                 Guid = user.Guid
             }, context);
 
+            // send extension could be added and used instead of publish
+            await busControl.Publish<SendMail>(new SendMail
+            {
+                To = command.Email,
+                TemplateCode = "user_register_verify",   
+                Params = { { 0,user.Guid } }             
+            }, context);
+
             return new CommandResult(user.Guid);
         }
     }
