@@ -38,8 +38,7 @@ namespace Identity.Api.Controllers.Users
             }, Context);
 
             return result.ToResponse(x=> {
-                if(x.HasError 
-                && x.Errors.Any(err=> err.Code == Msg.UserAlreadyExistByEmail))
+                if(x.HasError(Msg.UserAlreadyExistByEmail))
                 {
                     var errors = x.Errors.Select( err => new Error { 
                         Code = err.Code, 

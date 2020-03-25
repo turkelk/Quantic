@@ -9,12 +9,12 @@
     <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" Version="3.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
     <PackageReference Include="ServiceStack.Redis" Version="5.8.0" />
-    <PackageReference Include="Quantic.Core" Version="2.0.1" />
-    <PackageReference Include="Quantic.Cache.InMemory" Version="2.0.1" />
-    <PackageReference Include="Quantic.Log" Version="2.0.1" />   
-    <PackageReference Include="Quantic.Validation" Version="2.0.1" />    
-    <PackageReference Include="Quantic.MassTransit.RabbitMq" Version="2.0.1" /> 
-    <PackageReference Include="Quantic.Web" Version="2.0.1" />        
+    <PackageReference Include="Quantic.Core" Version="2.0.2" />
+    <PackageReference Include="Quantic.Cache.InMemory" Version="2.0.2" />
+    <PackageReference Include="Quantic.Log" Version="2.0.2" />   
+    <PackageReference Include="Quantic.Validation" Version="2.0.2" />    
+    <PackageReference Include="Quantic.MassTransit.RabbitMq" Version="2.0.3" /> 
+    <PackageReference Include="Quantic.Web" Version="2.0.2" />        
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
