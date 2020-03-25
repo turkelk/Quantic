@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Quantic.Core;
 
@@ -6,15 +8,14 @@ namespace Quantic.Web
 {
     public static class QueryResultExtension
     {
-         public static IActionResult Ok<T>(this QueryResult<T> result)
-         {     
+        public static IActionResult Ok<T>(this QueryResult<T> result)
+        {     
             return result.GetError() ?? new OkObjectResult(AsQueryResponse(result));          
-         }
-
+        }       
         public static IActionResult ToResponse<T>(this QueryResult<T> result, Func<QueryResult<T>, IActionResult> func)  
         {  
             return func(result);  
-        } 
+        }        
         private static IActionResult GetError<T>(this QueryResult<T> result)
         {
             return result.HasError

@@ -61,7 +61,8 @@ namespace Quantic.Web
         public static IActionResult ToResponse(this CommandResult result, Func<CommandResult, IActionResult> func)  
         {  
             return func(result);  
-        }         
+        }
+                       
         private static IActionResult GetError(this CommandResult result)
         {
             return result.HasError

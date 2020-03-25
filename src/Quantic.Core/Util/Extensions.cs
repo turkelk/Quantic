@@ -1,6 +1,7 @@
 using System;
+using System.Linq;
 
-namespace Quantic.Core.Util
+namespace Quantic.Core
 {
     public static class Extensions
     {
@@ -34,6 +35,19 @@ namespace Quantic.Core.Util
 			if (string.IsNullOrEmpty(str)) {
 				throw new ArgumentException(paramName);
 			}
-		}   
+		}
+
+		public static bool HasError(this CommandResult result, string errorCode)
+		{
+			if(result.IsSuccess) return false;
+
+			return result.Errors.Any(err=> err.Code == errorCode);
+		} 
+		public static bool HasError<TResult>(this QueryResult<TResult> result, string errorCode)
+		{
+			if(result.IsSuccess) return false;
+
+			return result.Errors.Any(err=> err.Code == errorCode);
+		}  		  
     }
 }
