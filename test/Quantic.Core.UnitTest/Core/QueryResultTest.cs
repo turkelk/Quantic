@@ -14,13 +14,13 @@ namespace Quantic.Core.Test.Core
             Assert.Throws<ArgumentNullException>(() => 
             {
                 // Act
-                var result = new QueryResult<int>(1, code: null, "message");
+                var result =  QueryResult<int>.WithCode(1, code: null);
             });
 
             Assert.Throws<ArgumentNullException>(() => 
             {
                 // Act
-                var result = new QueryResult<int>(1, code: "", "message");
+                var result = QueryResult<int>.WithCode(1, code: "");
             });  
         }
 
@@ -32,15 +32,15 @@ namespace Quantic.Core.Test.Core
             {
                 // Act
                 var failureList = new List<Failure>(null);
-                var result = new QueryResult<int>(failureList);
+                var result = QueryResult<int>.WithError(failureList);
             }); 
 
             // Assert
-            Assert.Throws<ArgumentNullException>(() => 
+            Assert.Throws<ArgumentException>(() => 
             {
                 // Act
                 var failureList = new List<Failure>();
-                var result = new QueryResult<int>(failureList);
+                var result = QueryResult<int>.WithError(failureList);
             });             
         }
 
@@ -51,7 +51,7 @@ namespace Quantic.Core.Test.Core
             int result = 1;
 
             // Act
-            var queryResult = new QueryResult<int>(result);
+            var queryResult = QueryResult<int>.WithResult(result);
 
             // Assert
             Assert.True(queryResult.IsSuccess);
@@ -67,7 +67,7 @@ namespace Quantic.Core.Test.Core
             int? result = null;
 
             // Act
-            var queryResult = new QueryResult<int?>(result);
+            var queryResult = QueryResult<int?>.WithResult(result);
 
             // Assert
             Assert.True(queryResult.IsSuccess);
@@ -85,7 +85,7 @@ namespace Quantic.Core.Test.Core
             int result = 1;
 
             // Act
-            var queryResult = new QueryResult<int>(result, code);
+            var queryResult = QueryResult<int>.WithCode(result, code);
 
             // Assert
             Assert.True(queryResult.IsSuccess);
@@ -104,7 +104,7 @@ namespace Quantic.Core.Test.Core
             int result = 1;
 
             // Act
-            var queryResult = new QueryResult<int>(result, code,message);
+            var queryResult = QueryResult<int>.WithMessage(result, code,message);
 
             // Assert
             Assert.True(queryResult.IsSuccess);
@@ -125,7 +125,7 @@ namespace Quantic.Core.Test.Core
             int result = 1;
 
             // Act
-            var queryResult = new QueryResult<int>(result, code, message);
+            var queryResult = QueryResult<int>.WithMessage(result, code, message);
 
             // Assert
             Assert.True(queryResult.IsSuccess);
@@ -144,7 +144,7 @@ namespace Quantic.Core.Test.Core
             var failure = new Failure(failireCode);
 
             // Act
-            var result = new QueryResult<int>(failure);
+            var result = QueryResult<int>.WithError(failure);
 
             // Assert
             Assert.True(result.HasError);
@@ -166,7 +166,7 @@ namespace Quantic.Core.Test.Core
             var failures = new List<Failure> { failure1, failure2 };
 
             // Act
-            var result = new QueryResult<int>(failures);
+            var result = QueryResult<int>.WithError(failures);
 
             // Assert
             Assert.True(result.HasError);
@@ -186,7 +186,7 @@ namespace Quantic.Core.Test.Core
             bool retry = false;
 
             // Act
-            var result = new QueryResult<int>(failure, retry: retry);
+            var result = QueryResult<int>.WithError(failure, retry: retry);
 
             // Assert
             Assert.True(result.HasError);
@@ -203,12 +203,61 @@ namespace Quantic.Core.Test.Core
             bool retry = true;
 
             // Act
-            var result = new QueryResult<int>(failure, retry: retry);
+            var result = QueryResult<int>.WithError(failure, retry: retry);
 
             // Assert
             Assert.True(result.HasError);
             Assert.True(result.Retry);
             Assert.False(result.IsSuccess);
         }
+
+         [Fact]
+        public void ShouldSuccessWithFailureCodeWithoutRetry()
+        {
+            // Arrange
+            var errorCode = "failure_code";
+
+            // Act
+            var result = QueryResult<int>.WithError(errorCode);
+
+            // Assert
+            Assert.True(result.HasError);
+            Assert.False(result.Retry);
+            Assert.True(result.Errors.Count == 1
+                && result.Errors.Any(x => x.Code == errorCode));
+            Assert.False(result.IsSuccess);
+        }
+
+        [Fact]
+        public void ShouldSuccessWithFailureCodeAndFalseRetry()
+        {
+            // Arrange            
+            var failireCode = "failure_code";
+            bool retry = false;
+
+            // Act
+            var result = QueryResult<int>.WithError(failireCode, retry: retry);
+
+            // Assert
+            Assert.True(result.HasError);
+            Assert.False(result.Retry);
+            Assert.False(result.IsSuccess);
+        }
+
+        [Fact]
+        public void ShouldSuccessWithFailureCodeAndTrueRetry()
+        {
+            // Arrange                
+            var failireCode = "failure_code";
+            bool retry = true;
+
+            // Act
+            var result = QueryResult<int>.WithError(failireCode, retry: retry);
+
+            // Assert
+            Assert.True(result.HasError);
+            Assert.True(result.Retry);
+            Assert.False(result.IsSuccess);
+        }        
     }
 }
