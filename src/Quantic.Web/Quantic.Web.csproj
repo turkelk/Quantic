@@ -10,6 +10,6 @@
     <PackageId>Quantic.Web</PackageId>         
   </PropertyGroup>
 <ItemGroup>
-  <PackageReference Include="Quantic.Core" Version="2.0.2" />
+  <PackageReference Include="Quantic.Core" Version="2.0.5" />
 </ItemGroup>
 </Project>

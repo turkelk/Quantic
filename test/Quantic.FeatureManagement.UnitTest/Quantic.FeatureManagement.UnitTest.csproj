@@ -2,9 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <IsPackable>false</IsPackable>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Quantic.Core" Version="2.0.5" />  
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
@@ -17,7 +15,7 @@
     </PackageReference>    
     <PackageReference Include="Moq" Version="4.13.0" />    
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Quantic.Cache.InMemory\Quantic.Cache.InMemory.csproj" />
+    <ItemGroup>
+    <ProjectReference Include="..\..\src\Quantic.FeatureManagement\Quantic.FeatureManagement.csproj" />
   </ItemGroup>
 </Project>
