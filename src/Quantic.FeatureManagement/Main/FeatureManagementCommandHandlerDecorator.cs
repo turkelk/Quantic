@@ -26,33 +26,14 @@ namespace Quantic.FeatureManagement
 
             if (handlerInfo == null)
                 return await decoratedRequestHandler.Handle(command, context);
-
-            bool allFeaturesUsed = true;
-
-            foreach (var feature in handlerInfo.Features)
+                
+            var allFeaturesEnabled = handlerInfo.Features.All(feature => 
             {
-                if (context.GetHeaderValue($"{FeatureHeader.Prefix}-{feature}") == null)
-                {
-                    allFeaturesUsed = false;
-                }
-            }
-
-            if (allFeaturesUsed)
-                return await decoratedRequestHandler.Handle(command, context);
-
-            bool allFeaturesEnabled = true;
-
-            foreach (var feature in handlerInfo.Features ?? Enumerable.Empty<string>())
-            {
-                if (!featureSettingsHolder.FatureEnabled(feature, context))
-                {
-                    allFeaturesEnabled = false;
-                }
-            }
+                return featureSettingsHolder.Settings.FirstOrDefault(x=>x.FeatureName == feature).Enabled(context);
+            });
 
             if (!allFeaturesEnabled)
                 return CommandResult.WithCode(FeatureMessages.FeatureNotEnabled);
-
 
             var usedFeatureHeaders = handlerInfo.Features.Select(feature => $"{FeatureHeader.Prefix}-{feature}");
 

@@ -5,19 +5,17 @@ namespace Quantic.FeatureManagement
 {
     public static class FeatureSettingsHolderExtension
     {
-        public static bool FatureEnabled(this FeatureSettingsHolder featureSettingsHolder, string featureName, RequestContext context)
+        public static bool Enabled(this FeatureSetting featureSettings, RequestContext context)
         {
-            var feature = featureSettingsHolder.Settings.FirstOrDefault(x => x.Name == featureName);
-
-            if (feature == null || !feature.Enable)
+            if(featureSettings == null) 
                 return false;
-
-            if (!feature.Filters.Any())
-                return true;
+                
+            if (!featureSettings.Filters.Any())
+                return featureSettings.Enable;
 
             bool filterMatch = true;
 
-            foreach (var filter in feature.Filters)
+            foreach (var filter in featureSettings.Filters)
             {
                 var headerValue = context.GetHeaderValue(filter.Key);
 
@@ -28,6 +26,6 @@ namespace Quantic.FeatureManagement
             }
 
             return filterMatch;
-        }
+        }        
     }
 }

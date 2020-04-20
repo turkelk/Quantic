@@ -20,7 +20,7 @@ namespace Quantic.FeatureManagement.UnitTest
         }
 
         [Fact]
-        public async Task ShoulCallDecoratedHandlerIfReturnsNull()
+        public async Task ShoulCallDecoratedHandlerIfHandlerHasNotFeature()
         {
             // Arrange            
             mockProvider.Setup(x => x.GetHandlerInfo(It.IsAny<string>()))
@@ -38,36 +38,36 @@ namespace Quantic.FeatureManagement.UnitTest
             await decodator.Handle(command, Helper.Context);
         }
 
-        [Fact]
-        public async Task ShoulCallDecoratedHandlerIfFeaturesUsed()
-        {
-            // Arrange    
-            var featureC = "FeatureC";
-            var featureQ = "FeatureQ";
-            var features = new string[] { featureC, featureQ };
-            var featureInfo = new HandlerFeatureInfo(typeof(TestCommand).Name, features);
+        // [Fact]
+        // public async Task ShoulCallDecoratedHandlerIfFeaturesUsed()
+        // {
+        //     // Arrange    
+        //     var featureC = "FeatureC";
+        //     var featureQ = "FeatureQ";
+        //     var features = new string[] { featureC, featureQ };
+        //     var featureInfo = new HandlerFeatureInfo(typeof(TestCommand).Name, features);
 
-            mockProvider.Setup(x => x.GetHandlerInfo(It.IsAny<string>()))
-            .Returns(featureInfo);
+        //     mockProvider.Setup(x => x.GetHandlerInfo(It.IsAny<string>()))
+        //     .Returns(featureInfo);
 
-            var command = new TestCommand();
+        //     var command = new TestCommand();
 
-            // Assert
-            mockCommandHandler
-            .Verify(x => x.Handle(command, It.IsAny<RequestContext>()), Times.AtMostOnce);
+        //     // Assert
+        //     mockCommandHandler
+        //     .Verify(x => x.Handle(command, It.IsAny<RequestContext>()), Times.AtMostOnce);
 
-            var decodator = new FeatureManagementCommandHandlerDecorator<TestCommand>(mockCommandHandler.Object, mockSettingsHolder.Object, mockProvider.Object);
+        //     var decodator = new FeatureManagementCommandHandlerDecorator<TestCommand>(mockCommandHandler.Object, mockSettingsHolder.Object, mockProvider.Object);
 
-            var headers = new Dictionary<string, string>
-            {
-                {$"{FeatureHeader.Prefix}-{featureC}", "SomeRequest"},
-                {$"{FeatureHeader.Prefix}-{featureQ}", "SomeRequest"}
-            };
-            var context = new RequestContext("trace-id", headers);
+        //     var headers = new Dictionary<string, string>
+        //     {
+        //         {$"{FeatureHeader.Prefix}-{featureC}", "SomeRequest"},
+        //         {$"{FeatureHeader.Prefix}-{featureQ}", "SomeRequest"}
+        //     };
+        //     var context = new RequestContext("trace-id", headers);
 
-            // Act
-            await decodator.Handle(command, context);
-        }
+        //     // Act
+        //     await decodator.Handle(command, context);
+        // }
 
         [Fact]
         public async Task ShoulNotCallDecoratedHandlerIfAllFeaturesNotEnabled()
@@ -86,12 +86,12 @@ namespace Quantic.FeatureManagement.UnitTest
             {
                 new FeatureSetting
                 {
-                    Name = featureC,
+                    FeatureName = featureC,
                     Enable = false
                 },
                new FeatureSetting
                 {
-                    Name = featureQ,
+                    FeatureName = featureQ,
                     Enable = true
                 }
             };
@@ -113,7 +113,7 @@ namespace Quantic.FeatureManagement.UnitTest
         }
 
         [Fact]
-        public async Task ShoulCallDecoratedHandlerAndUsedFeatureHeaders()
+        public async Task ShoulCallDecoratedHandlerAndAddUsedFeaturesToHeader()
         {
             // Arrange    
             var featureC = "FeatureC";
@@ -129,12 +129,12 @@ namespace Quantic.FeatureManagement.UnitTest
             {
                 new FeatureSetting
                 {
-                    Name = featureC,
+                    FeatureName = featureC,
                     Enable = true
                 },
                new FeatureSetting
                 {
-                    Name = featureQ,
+                    FeatureName = featureQ,
                     Enable = true
                 }
             };

@@ -28,28 +28,10 @@ namespace Quantic.FeatureManagement
             if (handlerInfo == null)
                 return await decoratedRequestHandler.Handle(query, context);
 
-            bool allFeaturesUsed = true;
-
-            foreach (var feature in handlerInfo.Features)
+            var allFeaturesEnabled = handlerInfo.Features.All(feature => 
             {
-                if (context.GetHeaderValue($"{FeatureHeader.Prefix}-{feature}") == null)
-                {
-                    allFeaturesUsed = false;
-                }
-            }
-
-            if (allFeaturesUsed)
-                return await decoratedRequestHandler.Handle(query, context);
-
-            bool allFeaturesEnabled = true;
-
-            foreach (var feature in handlerInfo.Features)
-            {
-                if (!featureSettingsHolder.FatureEnabled(feature, context))
-                {
-                    allFeaturesEnabled = false;
-                }
-            }
+                return featureSettingsHolder.Settings.FirstOrDefault(x=>x.FeatureName == feature).Enabled(context);
+            });
 
             if (!allFeaturesEnabled)
                 return QueryResult<TResponse>.WithCode(default(TResponse), FeatureMessages.FeatureNotEnabled);
