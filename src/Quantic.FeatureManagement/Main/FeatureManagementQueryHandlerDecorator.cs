@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Quantic.Core;
 
@@ -36,11 +35,11 @@ namespace Quantic.FeatureManagement
             if (!allFeaturesEnabled)
                 return QueryResult<TResponse>.WithCode(default(TResponse), FeatureMessages.FeatureNotEnabled);
 
-            var usedFeatureHeaders = handlerInfo.Features.Select(x => $"{FeatureHeader.Prefix}-{x}");
+            var usedFeatureHeaders = handlerInfo.Features.Select(featureName => $"{FeatureHeader.Prefix}-{featureName}");
 
             foreach (var header in usedFeatureHeaders)
             {
-                context.Headers.Add(header, handlerInfo.Name);
+                context.Add(header, handlerInfo.Name);
             }
             
             return await decoratedRequestHandler.Handle(query, context);            

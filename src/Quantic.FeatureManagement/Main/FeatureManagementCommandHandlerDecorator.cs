@@ -35,11 +35,11 @@ namespace Quantic.FeatureManagement
             if (!allFeaturesEnabled)
                 return CommandResult.WithCode(FeatureMessages.FeatureNotEnabled);
 
-            var usedFeatureHeaders = handlerInfo.Features.Select(feature => $"{FeatureHeader.Prefix}-{feature}");
+            var usedFeatureHeaders = handlerInfo.Features.Select(featureName => $"{FeatureHeader.Prefix}-{featureName}");
 
             foreach (var header in usedFeatureHeaders)
             {
-                context.Headers.Add(header, handlerInfo.Name);
+                context.Add(header, handlerInfo.Name);
             }
 
             return await decoratedRequestHandler.Handle(command, context);

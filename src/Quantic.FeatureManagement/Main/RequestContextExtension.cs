@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Quantic.Core;
 
 namespace Quantic.FeatureManagement
@@ -9,6 +10,11 @@ namespace Quantic.FeatureManagement
         {            
             context.Headers.TryGetValue(key, out string value);
             return value;
+        }
+
+        public static bool Add(this RequestContext context, string key, string value)
+        {
+            return context.Headers.TryAdd(key, value);
         }        
     }
 }
