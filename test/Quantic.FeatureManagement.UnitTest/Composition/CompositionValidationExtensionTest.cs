@@ -24,7 +24,7 @@ namespace Quantic.FeatureManagement.UnitTest
                 };
             }).AddFeatureManagementDecorator();
             
-            var holder = new FeatureSettingsHolder();
+            var holder = new SettingsHolder();
             builder.AddSingleton(holder);
 
             var container = builder.BuildServiceProvider();
@@ -52,7 +52,7 @@ namespace Quantic.FeatureManagement.UnitTest
                 };
             }).AddFeatureManagementDecorator();
             
-            var holder = new FeatureSettingsHolder();
+            var holder = new SettingsHolder();
             builder.AddSingleton(holder);
 
             var container = builder.BuildServiceProvider();
@@ -80,7 +80,7 @@ namespace Quantic.FeatureManagement.UnitTest
                 };
             }).AddFeatureManagementDecorator();
 
-            var holder = new FeatureSettingsHolder();
+            var holder = new SettingsHolder();
             builder.AddSingleton(holder);
             
             var container = builder.BuildServiceProvider();
@@ -107,7 +107,7 @@ namespace Quantic.FeatureManagement.UnitTest
                 };
             }).AddFeatureManagementDecorator();
             
-            var holder = new FeatureSettingsHolder();
+            var holder = new SettingsHolder();
             builder.AddSingleton(holder);
 
             var container = builder.BuildServiceProvider();

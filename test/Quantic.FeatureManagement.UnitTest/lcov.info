@@ -81,20 +81,9 @@ BRH:0
 FNF:2
 FNH:2
 end_of_record
-SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/FeatureHeader.cs
-FN:4,System.Void Quantic.FeatureManagement.FeatureHeader::.cctor()
-FNDA:1,System.Void Quantic.FeatureManagement.FeatureHeader::.cctor()
-DA:5,1
-LF:1
-LH:1
-BRF:0
-BRH:0
-FNF:1
-FNH:1
-end_of_record
 SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/FeatureManagementCommandHandlerDecorator.cs
-FN:13,System.Void Quantic.FeatureManagement.FeatureManagementCommandHandlerDecorator`1::.ctor(Quantic.Core.ICommandHandler`1<TCommand>,Quantic.FeatureManagement.FeatureSettingsHolder,Quantic.FeatureManagement.IHandlerFeatureInfoProvider)
-FNDA:4,System.Void Quantic.FeatureManagement.FeatureManagementCommandHandlerDecorator`1::.ctor(Quantic.Core.ICommandHandler`1<TCommand>,Quantic.FeatureManagement.FeatureSettingsHolder,Quantic.FeatureManagement.IHandlerFeatureInfoProvider)
+FN:13,System.Void Quantic.FeatureManagement.FeatureManagementCommandHandlerDecorator`1::.ctor(Quantic.Core.ICommandHandler`1<TCommand>,Quantic.FeatureManagement.SettingsHolder,Quantic.FeatureManagement.IHandlerFeatureInfoProvider)
+FNDA:4,System.Void Quantic.FeatureManagement.FeatureManagementCommandHandlerDecorator`1::.ctor(Quantic.Core.ICommandHandler`1<TCommand>,Quantic.FeatureManagement.SettingsHolder,Quantic.FeatureManagement.IHandlerFeatureInfoProvider)
 DA:14,4
 DA:15,4
 DA:16,4
@@ -134,9 +123,9 @@ BRDA:35,327,0,1
 BRDA:35,327,1,1
 BRDA:38,363,0,1
 BRDA:38,363,1,1
-BRDA:40,494,1,2
-BRDA:40,494,0,1
-BRDA:45,577,1,1
+BRDA:40,489,1,2
+BRDA:40,489,0,1
+BRDA:45,572,1,1
 LF:25
 LH:25
 BRF:11
@@ -145,8 +134,9 @@ FNF:4
 FNH:4
 end_of_record
 SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/FeatureManagementQueryHandlerDecorator.cs
-FN:14,System.Void Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2::.ctor(Quantic.Core.IQueryHandler`2<TQuery,TResponse>,Quantic.FeatureManagement.FeatureSettingsHolder,Quantic.FeatureManagement.IHandlerFeatureInfoProvider)
-FNDA:4,System.Void Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2::.ctor(Quantic.Core.IQueryHandler`2<TQuery,TResponse>,Quantic.FeatureManagement.FeatureSettingsHolder,Quantic.FeatureManagement.IHandlerFeatureInfoProvider)
+FN:13,System.Void Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2::.ctor(Quantic.Core.IQueryHandler`2<TQuery,TResponse>,Quantic.FeatureManagement.SettingsHolder,Quantic.FeatureManagement.IHandlerFeatureInfoProvider)
+FNDA:4,System.Void Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2::.ctor(Quantic.Core.IQueryHandler`2<TQuery,TResponse>,Quantic.FeatureManagement.SettingsHolder,Quantic.FeatureManagement.IHandlerFeatureInfoProvider)
+DA:14,4
 DA:15,4
 DA:16,4
 DA:17,4
@@ -154,120 +144,46 @@ DA:18,4
 DA:19,4
 DA:20,4
 DA:21,4
-DA:22,4
-FN:31,System.Boolean Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2/<>c__DisplayClass4_0::<Handle>b__0(System.String)
+FN:30,System.Boolean Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2/<>c__DisplayClass4_0::<Handle>b__0(System.String)
 FNDA:5,System.Boolean Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2/<>c__DisplayClass4_0::<Handle>b__0(System.String)
-DA:32,5
-DA:33,9
-DA:34,5
-FN:38,System.String Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2/<>c::<Handle>b__4_1(System.String)
+DA:31,5
+DA:32,9
+DA:33,5
+FN:37,System.String Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2/<>c::<Handle>b__4_1(System.String)
 FNDA:3,System.String Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2/<>c::<Handle>b__4_1(System.String)
-DA:39,3
-FN:24,System.Void Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2/<Handle>d__4::MoveNext()
+DA:38,3
+FN:23,System.Void Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2/<Handle>d__4::MoveNext()
 FNDA:3,System.Void Quantic.FeatureManagement.FeatureManagementQueryHandlerDecorator`2/<Handle>d__4::MoveNext()
+DA:24,3
 DA:25,3
-DA:26,3
-DA:28,3
-DA:29,1
-DA:31,2
-DA:36,2
-DA:37,1
-DA:41,7
+DA:27,3
+DA:28,1
+DA:30,2
+DA:35,2
+DA:36,1
+DA:40,7
+DA:41,2
 DA:42,2
 DA:43,2
-DA:44,2
-DA:46,1
-DA:47,3
-BRDA:25,14,0,3
-BRDA:28,129,0,1
-BRDA:29,180,1,1
-BRDA:28,129,1,2
-BRDA:36,327,0,1
-BRDA:36,327,1,1
-BRDA:39,373,0,1
-BRDA:39,373,1,1
-BRDA:41,504,1,2
-BRDA:41,504,0,1
-BRDA:46,587,1,1
+DA:45,1
+DA:46,3
+BRDA:24,14,0,3
+BRDA:27,129,0,1
+BRDA:28,180,1,1
+BRDA:27,129,1,2
+BRDA:35,327,0,1
+BRDA:35,327,1,1
+BRDA:38,373,0,1
+BRDA:38,373,1,1
+BRDA:40,499,1,2
+BRDA:40,499,0,1
+BRDA:45,582,1,1
 LF:25
 LH:25
 BRF:11
 BRH:11
 FNF:4
 FNH:4
-end_of_record
-SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/FeatureMessages.cs
-FN:4,System.Void Quantic.FeatureManagement.FeatureMessages::.cctor()
-FNDA:1,System.Void Quantic.FeatureManagement.FeatureMessages::.cctor()
-DA:5,1
-LF:1
-LH:1
-BRF:0
-BRH:0
-FNF:1
-FNH:1
-end_of_record
-SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/FeatureSetting.cs
-FN:6,System.String Quantic.FeatureManagement.FeatureSetting::get_FeatureName()
-FNDA:21,System.String Quantic.FeatureManagement.FeatureSetting::get_FeatureName()
-DA:7,21
-FN:7,System.Boolean Quantic.FeatureManagement.FeatureSetting::get_Enable()
-FNDA:22,System.Boolean Quantic.FeatureManagement.FeatureSetting::get_Enable()
-DA:8,22
-FN:8,System.Void Quantic.FeatureManagement.FeatureSetting::.ctor()
-FNDA:13,System.Void Quantic.FeatureManagement.FeatureSetting::.ctor()
-DA:9,13
-LF:3
-LH:3
-BRF:0
-BRH:0
-FNF:3
-FNH:3
-end_of_record
-SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/FeatureSettingsHolder.cs
-FN:4,Quantic.FeatureManagement.FeatureSetting[] Quantic.FeatureManagement.FeatureSettingsHolder::get_Settings()
-FNDA:10,Quantic.FeatureManagement.FeatureSetting[] Quantic.FeatureManagement.FeatureSettingsHolder::get_Settings()
-DA:5,10
-LF:1
-LH:1
-BRF:0
-BRH:0
-FNF:1
-FNH:1
-end_of_record
-SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/FeatureSettingsHolderExtension.cs
-FN:8,System.Boolean Quantic.FeatureManagement.FeatureSettingsHolderExtension::Enabled(Quantic.FeatureManagement.FeatureSetting,Quantic.Core.RequestContext)
-FNDA:13,System.Boolean Quantic.FeatureManagement.FeatureSettingsHolderExtension::Enabled(Quantic.FeatureManagement.FeatureSetting,Quantic.Core.RequestContext)
-DA:9,13
-DA:10,13
-DA:11,2
-DA:13,11
-DA:14,9
-DA:16,2
-DA:18,10
-DA:19,2
-DA:20,2
-DA:22,2
-DA:23,1
-DA:24,1
-DA:25,1
-DA:26,2
-DA:28,2
-DA:29,13
-BRDA:10,7,0,2
-BRDA:10,7,1,11
-BRDA:13,29,0,9
-BRDA:13,29,1,2
-BRDA:18,115,1,2
-BRDA:22,101,0,1
-BRDA:22,101,1,2
-BRDA:18,115,0,2
-LF:16
-LH:16
-BRF:8
-BRH:8
-FNF:1
-FNH:1
 end_of_record
 SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/HandlerFeatureInfo.cs
 FN:12,System.String Quantic.FeatureManagement.HandlerFeatureInfo::get_Name()
@@ -365,17 +281,87 @@ BRH:17
 FNF:4
 FNH:2
 end_of_record
-SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/RequestContextExtension.cs
-FN:8,System.String Quantic.FeatureManagement.RequestContextExtension::GetHeaderValue(Quantic.Core.RequestContext,System.String)
-FNDA:4,System.String Quantic.FeatureManagement.RequestContextExtension::GetHeaderValue(Quantic.Core.RequestContext,System.String)
-DA:9,4
-DA:10,4
-DA:11,4
-DA:12,4
-LF:4
-LH:4
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/Header.cs
+FN:4,System.Void Quantic.FeatureManagement.Header::.cctor()
+FNDA:1,System.Void Quantic.FeatureManagement.Header::.cctor()
+DA:5,1
+LF:1
+LH:1
 BRF:0
 BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/Msg.cs
+FN:4,System.Void Quantic.FeatureManagement.Msg::.cctor()
+FNDA:1,System.Void Quantic.FeatureManagement.Msg::.cctor()
+DA:5,1
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/Setting.cs
+FN:6,System.String Quantic.FeatureManagement.Setting::get_FeatureName()
+FNDA:21,System.String Quantic.FeatureManagement.Setting::get_FeatureName()
+DA:7,21
+FN:7,System.Boolean Quantic.FeatureManagement.Setting::get_Enable()
+FNDA:22,System.Boolean Quantic.FeatureManagement.Setting::get_Enable()
+DA:8,22
+FN:8,System.Void Quantic.FeatureManagement.Setting::.ctor()
+FNDA:13,System.Void Quantic.FeatureManagement.Setting::.ctor()
+DA:9,13
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/SettingsHolder.cs
+FN:4,Quantic.FeatureManagement.Setting[] Quantic.FeatureManagement.SettingsHolder::get_Settings()
+FNDA:10,Quantic.FeatureManagement.Setting[] Quantic.FeatureManagement.SettingsHolder::get_Settings()
+DA:5,10
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.FeatureManagement/Main/SettingsHolderExtension.cs
+FN:8,System.Boolean Quantic.FeatureManagement.SettingsHolderExtension::Enabled(Quantic.FeatureManagement.Setting,Quantic.Core.RequestContext)
+FNDA:13,System.Boolean Quantic.FeatureManagement.SettingsHolderExtension::Enabled(Quantic.FeatureManagement.Setting,Quantic.Core.RequestContext)
+DA:9,13
+DA:10,13
+DA:11,2
+DA:13,11
+DA:14,9
+DA:16,2
+DA:18,10
+DA:19,2
+DA:20,2
+DA:22,2
+DA:23,1
+DA:24,1
+DA:25,1
+DA:26,2
+DA:28,2
+DA:29,13
+BRDA:10,7,0,2
+BRDA:10,7,1,11
+BRDA:13,29,0,9
+BRDA:13,29,1,2
+BRDA:18,115,1,2
+BRDA:22,101,0,1
+BRDA:22,101,1,2
+BRDA:18,115,0,2
+LF:16
+LH:16
+BRF:8
+BRH:8
 FNF:1
 FNH:1
 end_of_record

@@ -16,8 +16,7 @@ namespace Quantic.Core
             var builder = new QuanticBuilder(services, options.Assemblies);
 
             builder.Services.Scan(x => x.FromAssemblies(options.Assemblies)
-                .AddClasses(classes => classes
-                .WithoutAttribute<SkipRegisterAttribute>()            
+                .AddClasses(classes => classes          
                 .AssignableTo(typeof(ICommandHandler<>)))
                 .AsImplementedInterfaces()
                 .WithTransientLifetime());
@@ -25,7 +24,6 @@ namespace Quantic.Core
 
             builder.Services.Scan(x => x.FromAssemblies(options.Assemblies)
                 .AddClasses(classes => classes
-                .WithoutAttribute<SkipRegisterAttribute>() 
                 .AssignableTo(typeof(IQueryHandler<,>)))
                 .AsImplementedInterfaces()
                 .WithTransientLifetime());              

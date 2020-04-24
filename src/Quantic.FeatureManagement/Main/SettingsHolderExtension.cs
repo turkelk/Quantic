@@ -3,9 +3,9 @@ using Quantic.Core;
 
 namespace Quantic.FeatureManagement
 {
-    public static class FeatureSettingsHolderExtension
+    public static class SettingsHolderExtension
     {
-        public static bool Enabled(this FeatureSetting featureSettings, RequestContext context)
+        public static bool Enabled(this Setting featureSettings, RequestContext context)
         {
             if(featureSettings == null) 
                 return false;
@@ -17,7 +17,7 @@ namespace Quantic.FeatureManagement
 
             foreach (var filter in featureSettings.Filters)
             {
-                var headerValue = context.GetHeaderValue(filter.Key);
+                var headerValue = context.GetValue(filter.Key);
 
                 if (headerValue != filter.Value)
                 {

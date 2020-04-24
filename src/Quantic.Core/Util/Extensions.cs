@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Quantic.Core
@@ -48,6 +49,17 @@ namespace Quantic.Core
 			if(result.IsSuccess) return false;
 
 			return result.Errors.Any(err=> err.Code == errorCode);
-		}  		  
+		}
+
+        public static string GetValue(this RequestContext context, string key)
+        {            
+            context.Headers.TryGetValue(key, out string value);
+            return value;
+        }
+
+        public static bool Add(this RequestContext context, string key, string value)
+        {
+            return context.Headers.TryAdd(key, value);
+        } 		  		  
     }
 }

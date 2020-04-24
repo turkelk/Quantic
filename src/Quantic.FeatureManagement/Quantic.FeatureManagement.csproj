@@ -4,6 +4,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
    <ItemGroup>
-    <PackageReference Include="Quantic.Core" Version="2.0.5" />
+    <PackageReference Include="Quantic.Core" Version="2.0.6" />
   </ItemGroup>
 </Project>

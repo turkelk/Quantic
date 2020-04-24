@@ -7,12 +7,12 @@ namespace Quantic.FeatureManagement
     public class FeatureManagementQueryHandlerDecorator<TQuery, TResponse> : IQueryHandler<TQuery, TResponse>
                where TQuery : IQuery<TResponse>
     {
-        private readonly FeatureSettingsHolder featureSettingsHolder;
+        private readonly SettingsHolder featureSettingsHolder;
         private readonly IHandlerFeatureInfoProvider handlerFeatureInfoProvider;
         private readonly IQueryHandler<TQuery,TResponse> decoratedRequestHandler;
 
         public FeatureManagementQueryHandlerDecorator(IQueryHandler<TQuery,TResponse> decoratedRequestHandler,
-            FeatureSettingsHolder featureSettingsHolder,
+            SettingsHolder featureSettingsHolder,
             IHandlerFeatureInfoProvider handlerFeatureInfoProvider)
         {
             this.decoratedRequestHandler = decoratedRequestHandler;
@@ -33,9 +33,9 @@ namespace Quantic.FeatureManagement
             });
 
             if (!allFeaturesEnabled)
-                return QueryResult<TResponse>.WithCode(default(TResponse), FeatureMessages.FeatureNotEnabled);
+                return QueryResult<TResponse>.WithCode(default(TResponse), Msg.FeatureNotEnabled);
 
-            var usedFeatureHeaders = handlerInfo.Features.Select(featureName => $"{FeatureHeader.Prefix}-{featureName}");
+            var usedFeatureHeaders = handlerInfo.Features.Select(featureName => $"{Header.Prefix}-{featureName}");
 
             foreach (var header in usedFeatureHeaders)
             {

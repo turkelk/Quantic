@@ -21,5 +21,10 @@ namespace Quantic.Core
 
         public string Code { get; }
         public string Message { get; }
+
+        public override string ToString()
+        {
+            return $"Code:{Code} Message:{Message}";
+        }
     }
 }

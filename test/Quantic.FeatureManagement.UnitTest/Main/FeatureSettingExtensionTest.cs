@@ -10,15 +10,15 @@ namespace Quantic.FeatureManagement.UnitTest
         public void ShouldSuccessWithoutFilter()
         {
             // Arrange
-            var feature1 = new FeatureSetting();
+            var feature1 = new Setting();
             feature1.FeatureName = "Feature1";
             feature1.Enable = true;
 
-            var feature2 = new FeatureSetting();
+            var feature2 = new Setting();
             feature2.FeatureName = "Feature2";
             feature2.Enable = true;    
 
-            var feature3 = new FeatureSetting();
+            var feature3 = new Setting();
             feature3.FeatureName = "Feature3";
             feature3.Enable = false;     
 
@@ -29,14 +29,14 @@ namespace Quantic.FeatureManagement.UnitTest
             Assert.True(feature1.Enabled(context)); 
             Assert.True(feature2.Enabled(context)); 
             Assert.False(feature3.Enabled(context));      
-            Assert.False(default(FeatureSetting).Enabled(context));                                            
+            Assert.False(default(Setting).Enabled(context));                                            
         }
 
         [Fact]
         public void ShouldSuccessWithFilter()
         {
             // Arrange
-            var feature1 = new FeatureSetting();
+            var feature1 = new Setting();
             feature1.FeatureName = "Feature1";
             feature1.Enable = true;
             feature1.Filters = new Dictionary<string, string>
@@ -44,7 +44,7 @@ namespace Quantic.FeatureManagement.UnitTest
                 {"KEY1","VALUE1"}
             };            
 
-            var feature2 = new FeatureSetting();
+            var feature2 = new Setting();
             feature2.FeatureName = "Feature2";
             feature2.Enable = true;  
             feature2.Filters = new Dictionary<string, string>
@@ -61,7 +61,7 @@ namespace Quantic.FeatureManagement.UnitTest
             // Act - Assert
             Assert.True(feature1.Enabled(context)); 
             Assert.False(feature2.Enabled(context)); 
-            Assert.False(default(FeatureSetting).Enabled(context));                                               
+            Assert.False(default(Setting).Enabled(context));                                               
         }         
     }
 }

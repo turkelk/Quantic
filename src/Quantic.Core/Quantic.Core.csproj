@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <PackageVersion>2.0.5</PackageVersion>
+    <PackageVersion>2.0.6</PackageVersion>
     <Authors>Turkel Gadirzade</Authors>
     <Description>Lighetweight framework for cqrs</Description>
     <PackOnBuild>true</PackOnBuild>

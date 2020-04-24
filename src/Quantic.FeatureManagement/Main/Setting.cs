@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Quantic.FeatureManagement
 {
-    public class FeatureSetting
+    public class Setting
     {
         public string FeatureName {get;set;}
         public bool Enable {get;set;}

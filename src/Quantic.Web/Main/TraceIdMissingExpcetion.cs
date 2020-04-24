@@ -1,7 +1,4 @@
 namespace Quantic.Web
 {
-    public class TraceIdMissingExpcetion : System.Exception
-    {
-        
-    }
+    public class TraceIdMissingExpcetion : System.Exception { }
 }

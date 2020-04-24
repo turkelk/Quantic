@@ -36,7 +36,6 @@ namespace Quantic.Log
 
             try
             {
-                
                 result = await decoratedRequestHandler.Handle(query, context);
             }
             catch (Exception ex)
@@ -63,6 +62,7 @@ namespace Quantic.Log
                     });                   
                 }                            
             }
+            
             return result;
         }            
     }

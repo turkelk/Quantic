@@ -10,12 +10,12 @@ namespace Quantic.FeatureManagement.UnitTest
     public class FeatureManagementCommandHandlerDecoratorTest
     {
         Mock<IHandlerFeatureInfoProvider> mockProvider;
-        Mock<FeatureSettingsHolder> mockSettingsHolder;
+        Mock<SettingsHolder> mockSettingsHolder;
         Mock<ICommandHandler<TestCommand>> mockCommandHandler;
         public FeatureManagementCommandHandlerDecoratorTest()
         {
             mockProvider = new Mock<IHandlerFeatureInfoProvider>();
-            mockSettingsHolder = new Mock<FeatureSettingsHolder>();
+            mockSettingsHolder = new Mock<SettingsHolder>();
             mockCommandHandler = new Mock<ICommandHandler<TestCommand>>();
         }
 
@@ -81,15 +81,15 @@ namespace Quantic.FeatureManagement.UnitTest
             mockProvider.Setup(x => x.GetHandlerInfo(It.IsAny<string>()))
             .Returns(featureInfo);
 
-            var settingsHolder = new FeatureSettingsHolder();
-            settingsHolder.Settings = new FeatureSetting[]
+            var settingsHolder = new SettingsHolder();
+            settingsHolder.Settings = new Setting[]
             {
-                new FeatureSetting
+                new Setting
                 {
                     FeatureName = featureC,
                     Enable = false
                 },
-               new FeatureSetting
+               new Setting
                 {
                     FeatureName = featureQ,
                     Enable = true
@@ -108,7 +108,7 @@ namespace Quantic.FeatureManagement.UnitTest
             var result = await decodator.Handle(command, Helper.Context);
 
             // Assert
-            Assert.Equal(FeatureMessages.FeatureNotEnabled,result.Code);
+            Assert.Equal(Msg.FeatureNotEnabled,result.Code);
             Assert.True(result.IsSuccess);
         }
 
@@ -124,15 +124,15 @@ namespace Quantic.FeatureManagement.UnitTest
             mockProvider.Setup(x => x.GetHandlerInfo(It.IsAny<string>()))
             .Returns(featureInfo);
 
-            var settingsHolder = new FeatureSettingsHolder();
-            settingsHolder.Settings = new FeatureSetting[]
+            var settingsHolder = new SettingsHolder();
+            settingsHolder.Settings = new Setting[]
             {
-                new FeatureSetting
+                new Setting
                 {
                     FeatureName = featureC,
                     Enable = true
                 },
-               new FeatureSetting
+               new Setting
                 {
                     FeatureName = featureQ,
                     Enable = true
