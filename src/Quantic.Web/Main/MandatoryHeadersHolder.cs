@@ -24,7 +24,7 @@ namespace Quantic.Web
 
                 if(!validationResult.IsSuccess)
                 {  
-                    throw new System.Exception($"Header validation failed for header {mandatoryHeader.Key} for value {value ?? "null"} with message {validationResult.Code}:{validationResult.Message} ");                                      
+                    throw new HeaderValidationException($"Header validation failed for header {mandatoryHeader.Key} for value {value ?? "null"} with message {validationResult.Code}:{validationResult.Message} ");                                      
                 }     
             }
         }        
