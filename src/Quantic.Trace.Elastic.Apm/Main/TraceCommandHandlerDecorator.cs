@@ -10,13 +10,16 @@ namespace Quantic.Trace.Elastic.Apm
              where TCommand : ICommand
     {
         private readonly ICommandHandler<TCommand> decoratedRequestHandler;
+        private readonly ITracer tracer;
         private readonly TraceSettings traceSettings;
 
         public TraceCommandHandlerDecorator(
             ICommandHandler<TCommand> decoratedRequestHandler,
+            ITracer tracer,
             IOptionsSnapshot<TraceSettings> traceSettingOptions)
         {
             this.decoratedRequestHandler = decoratedRequestHandler;
+            this.tracer = tracer;
             this.traceSettings = traceSettingOptions.Value;
         }
 
@@ -33,17 +36,18 @@ namespace Quantic.Trace.Elastic.Apm
             if(!context.Headers.ContainsKey(DistributedTracingHeader.DistributedTracingDataKey))
             {
                 string outgoingDistributedTracingData = 
-                (Agent.Tracer.CurrentSpan?.OutgoingDistributedTracingData
-                ?? Agent.Tracer.CurrentTransaction?.OutgoingDistributedTracingData)?.SerializeToString();
+                (tracer.CurrentSpan?.OutgoingDistributedTracingData
+                ?? tracer.CurrentTransaction?.OutgoingDistributedTracingData)?.SerializeToString();
 
                 context.Headers.Add(DistributedTracingHeader.DistributedTracingDataKey, outgoingDistributedTracingData); 
             } 
 
-            if(Agent.Tracer.CurrentTransaction == null)
+            if(tracer.CurrentTransaction == null)
             {
-               await Agent.Tracer.CaptureTransaction($"{commandName}-Txn", $"{commandName}-Txn", async() => 
+               await tracer.CaptureTransaction($"{commandName}-Txn", $"{commandName}-Txn", async(transaction) => 
                {
-                    await Agent.Tracer.CurrentTransaction.CaptureSpan(commandName, $"{commandName} Handling", async (span) => 
+                   // transaction.Labels["TK"] = "kadirzade";
+                    await tracer.CurrentTransaction.CaptureSpan(commandName, $"{commandName} Handling", async (span) => 
                     {
                         commandResult =  await decoratedRequestHandler.Handle(command, context);
                     });                   
@@ -51,9 +55,10 @@ namespace Quantic.Trace.Elastic.Apm
             }
             else
             {
-                await Agent.Tracer.CurrentTransaction.CaptureSpan(commandName, $"{commandName} Handling", async (span) => 
+                await tracer.CurrentTransaction.CaptureSpan(commandName, $"{commandName} Handling", async (span) => 
                 {
                     commandResult =  await decoratedRequestHandler.Handle(command, context);
+                    span.Labels["result"] = commandResult.FormatResult();  
                 });                
             }
 
