@@ -44,10 +44,10 @@ namespace Quantic.Trace.Elastic.Apm
 
             if(tracer.CurrentTransaction == null)
             {
-               await tracer.CaptureTransaction($"{commandName}-Txn", $"{commandName}-Txn", async(transaction) => 
+               await tracer.CaptureTransaction(commandName.ToTransactionName(), commandName.ToTransactionType(), async(transaction) => 
                {
                    // transaction.Labels["TK"] = "kadirzade";
-                    await tracer.CurrentTransaction.CaptureSpan(commandName, $"{commandName} Handling", async (span) => 
+                    await tracer.CurrentTransaction.CaptureSpan(commandName.ToSpanName(), commandName.ToSpanType(), async (span) => 
                     {
                         commandResult =  await decoratedRequestHandler.Handle(command, context);
                     });                   
@@ -55,7 +55,7 @@ namespace Quantic.Trace.Elastic.Apm
             }
             else
             {
-                await tracer.CurrentTransaction.CaptureSpan(commandName, $"{commandName} Handling", async (span) => 
+                await tracer.CurrentTransaction.CaptureSpan(commandName.ToSpanName(), commandName.ToSpanType(), async (span) => 
                 {
                     commandResult =  await decoratedRequestHandler.Handle(command, context);
                     span.Labels["result"] = commandResult.FormatResult();  
