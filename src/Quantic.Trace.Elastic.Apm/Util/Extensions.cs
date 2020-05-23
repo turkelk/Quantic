@@ -1,3 +1,5 @@
+using Quantic.Core;
+
 namespace Quantic.Trace.Elastic.Apm
 {
     internal static class Extension
@@ -18,6 +20,29 @@ namespace Quantic.Trace.Elastic.Apm
         public static string ToSpanType(this string requestName)
         {
             return $"{requestName} Handling";
-        }               
+        } 
+
+        public static string FormatResult(this CommandResult result) 
+        {        
+            if(result.IsSuccess)
+            {
+                return $"{result.Code} {result.Message}";
+            }    
+            else
+            {
+                return $"{result.Errors[0].Code} {result.Errors[0].Message}";                              
+            }
+        } 
+        public static string FormatResult<TResult>(this QueryResult<TResult> result) 
+        {        
+            if(result.IsSuccess)
+            {
+                return $"{result.Code} {result.Message}";
+            }    
+            else
+            {
+                return $"{result.Errors[0].Code} {result.Errors[0].Message}";                              
+            }
+        }                       
     }
 }
