@@ -15,12 +15,11 @@ namespace Quantic.Web
             MandatoryHeadersHolder.Headers.TryAdd(key, validator);
         }   
 
-        public void AddMandatoryHeadersFromConfig(IConfiguration configuration, string sectionName = "HttpMandatoryHeaders")
+        public void AddMandatoryHeaders(List<string> keys)
         {   
-            var headers = configuration.GetSection(sectionName).Get<List<string>>();    
-            foreach(var header in headers)
+            foreach(var key in keys)
             {
-                MandatoryHeadersHolder.Add(header, StringOrNullHeaderValidator.Instance);
+                MandatoryHeadersHolder.Add(key, StringOrNullHeaderValidator.Instance);
             }                                          
         }          
     }
