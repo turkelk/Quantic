@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Quantic.Ef.Util;
 
 namespace Quantic.Ef
 {
@@ -59,21 +60,21 @@ namespace Quantic.Ef
                         entry.CurrentValues[BaseProperties.Guid] = Guid.NewGuid();
                         entry.CurrentValues[BaseProperties.IsDeleted] = false;
                         entry.CurrentValues[BaseProperties.CreatedBy] = UserId;                        
-                        entry.CurrentValues[BaseProperties.CreatedAt] = DateTime.Now.ToFileTime();
+                        entry.CurrentValues[BaseProperties.CreatedAt] = DateTime.Now.ToUnixTimeMilliseconds();
                         entry.CurrentValues[BaseProperties.UpdatedAt] = default;
                         entry.CurrentValues[BaseProperties.UpdatedBy] = default;
                         break;
                     case EntityState.Deleted:
                         entry.State = EntityState.Modified;
                         entry.CurrentValues[BaseProperties.IsDeleted] = true;
-                        entry.CurrentValues[BaseProperties.UpdatedAt] = DateTime.Now.ToFileTime();
+                        entry.CurrentValues[BaseProperties.UpdatedAt] = DateTime.Now.ToUnixTimeMilliseconds();
                         entry.CurrentValues[BaseProperties.UpdatedBy] = UserId;
                         entry.Property(BaseProperties.Guid).IsModified = false;
                         entry.Property(BaseProperties.CreatedAt).IsModified = false;
                         entry.Property(BaseProperties.CreatedBy).IsModified = false;                        
                         break;
                     case EntityState.Modified:
-                        entry.CurrentValues[BaseProperties.UpdatedAt] = DateTime.Now.ToFileTime();
+                        entry.CurrentValues[BaseProperties.UpdatedAt] = DateTime.Now.ToUnixTimeMilliseconds();
                         entry.CurrentValues[BaseProperties.UpdatedBy] = UserId;                        
                         entry.Property(BaseProperties.Guid).IsModified = false;
                         entry.Property(BaseProperties.CreatedAt).IsModified = false;

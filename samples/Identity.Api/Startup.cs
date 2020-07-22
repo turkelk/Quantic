@@ -38,7 +38,7 @@ namespace Identity.Api
             .AddQuanticMassTransit((provider, cfg) => {
                 cfg.ReceiveEndpoint("identity", endpoint => {
                     endpoint.UseMessageRetry(x => x.Interval(2, 100));                  
-                });                                          
+                });                                      
             });
 
             string connectionString = Configuration.GetValue<string>("CONNECTION_STRING");            

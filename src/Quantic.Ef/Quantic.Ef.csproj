@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageVersion>2.0.7</PackageVersion>
+    <Authors>Turkel Gadirzade</Authors>
+    <Description>Quantic framework EF support</Description>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageId>Quantic.Ef</PackageId>       
   </PropertyGroup>
 
   <ItemGroup>

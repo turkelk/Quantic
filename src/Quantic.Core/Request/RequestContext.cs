@@ -17,14 +17,33 @@ namespace Quantic.Core
 
         public string TraceId { get; }
         public IDictionary<string, string> Headers { get; }
+        
         public string AcceptLanguage
         {
             get
             {
-                string value;
-                Headers.TryGetValue("Accept-Language", out value); 
-                return value;                  
+                return GetValue("Accept-Language");                                  
             }
         }
+
+        public string UserId
+        {
+            get
+            {
+                return GetValue("X-User-Id");                  
+            }
+        } 
+
+        public string GetValue(string key)
+        {            
+            string value = null;
+            Headers?.TryGetValue(key, out value);
+            return value;
+        }
+
+        public bool GetOrAdd(string key, string value)
+        {
+            return Headers?.TryAdd(key, value) ?? false;
+        }        
     }
 }

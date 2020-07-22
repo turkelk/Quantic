@@ -59,7 +59,7 @@ namespace Quantic.Core
 
         protected static readonly string SuccessMessage = Messages.Success;
 
-        public string ErrosToString()
+        public string ErrorsToString()
         {
             if (IsSuccess)
                 return null;
