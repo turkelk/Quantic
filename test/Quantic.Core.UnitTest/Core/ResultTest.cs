@@ -223,7 +223,7 @@ namespace Quantic.Core.Test
         {
             string code = "code";
             var result = new Result(code);
-            Assert.Null(result.ErrosToString());
+            Assert.Null(result.ErrorsToString());
         }
     }
 }
