@@ -11,7 +11,7 @@ namespace Quantic.Ef
         public Guid Guid { get; set; }
         public bool IsDeleted { get;set;}
         public long UpdatedAt { get;set;}
-        public long InsertedAt { get;set;}    
+        public long CreatedAt { get;set;}    
         public string CreatedBy {get;set;}    
         public string UpdatedBy {get;set;}          
     }

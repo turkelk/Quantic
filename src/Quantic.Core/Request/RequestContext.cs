@@ -5,6 +5,8 @@ namespace Quantic.Core
 {
     public class RequestContext
     {
+        public const string UserKey = "X-User-Id";
+
         public RequestContext(string traceId,
             IDictionary<string, string> headers)
         {
@@ -30,7 +32,7 @@ namespace Quantic.Core
         {
             get
             {
-                return GetValue("X-User-Id");                  
+                return GetValue(UserKey);                  
             }
         } 
 
