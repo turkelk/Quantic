@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+﻿using System.IO;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace Quantic.Log
 {
@@ -12,9 +14,15 @@ namespace Quantic.Log
             this.logger = logger;
         }
 
-        public void Log(RequestLog log)
+        public async Task Log(RequestLog log)
         {
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, JsonConvert.SerializeObject(log,SerializerSettings.Value));
+            using (var stream = new MemoryStream())
+            {
+                await JsonSerializer.SerializeAsync<RequestLog>(stream, log);
+                stream.Position = 0;
+                using var reader = new StreamReader(stream);
+                logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, await reader.ReadToEndAsync());
+            }
         }
     }
 }

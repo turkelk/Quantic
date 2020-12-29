@@ -1,7 +1,9 @@
-﻿namespace Quantic.Log
+﻿using System.Threading.Tasks;
+
+namespace Quantic.Log
 {
     public interface IRequestLogger
     {
-        void Log(RequestLog log);
+        Task Log(RequestLog log);
     }
 }

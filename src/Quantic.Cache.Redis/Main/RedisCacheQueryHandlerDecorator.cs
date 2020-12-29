@@ -42,7 +42,7 @@ namespace Quantic.Cache.Redis
 
                 if (getResult.HasError)
                 {
-                    throw new Exception($"Cache handler {getResult.ErrosToString()}");
+                    throw new Exception($"Cache handler {((Result)getResult).ErrorsToString()}");
                 }
 
                 if (queryInfo.CacheOption.ExpireInSeconds > 0)

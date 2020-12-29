@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using Quantic.Core;
 using Quantic.Log.Util;
 
@@ -31,39 +30,39 @@ namespace Quantic.Log
         {
             QueryResult<TResponse> result = null;
             DateTime requestDate = DateTime.UtcNow;
-            
-            using(logger.BeginScope($"trace-id:{context.TraceId}"))
 
-            try
-            {
-                result = await decoratedRequestHandler.Handle(query, context);
-            }
-            catch (Exception ex)
-            {
-                result = new QueryResult<TResponse>(new Failure(Constants.UnhandledException, ex.ToString()));
-            }
-            finally
-            {
-                var queryName =  query.GetType().Name;
-                bool shouldLog = logSettings?.ShouldLog(queryName) ?? true;
+            using (logger.BeginScope($"trace-id:{context.TraceId}"))
 
-                if(shouldLog)
+                try
                 {
-                    requestLogger.Log(new RequestLog
+                    result = await decoratedRequestHandler.Handle(query, context);
+                }
+                catch (Exception ex)
+                {
+                    result = new QueryResult<TResponse>(new Failure(Constants.UnhandledException, ex.ToString()));
+                }
+                finally
+                {
+                    var queryName = query.GetType().Name;
+                    bool shouldLog = logSettings?.ShouldLog(queryName) ?? true;
+
+                    if (shouldLog)
                     {
-                        Name = queryName,
-                        CorrelationId = context.TraceId,
-                        Request = query,
-                        RequestDate = requestDate,
-                        Response = result,
-                        ResponseDate = DateTime.UtcNow,
-                        Result = result.HasError ? Result.Error : Result.Success
-                        //UserCode = context.CorrelationContext.UserId
-                    });                   
-                }                            
-            }
-            
+                        await requestLogger.Log(new RequestLog
+                        {
+                            Name = queryName,
+                            CorrelationId = context.TraceId,
+                            Request = query,
+                            RequestDate = requestDate,
+                            Response = result,
+                            ResponseDate = DateTime.UtcNow,
+                            Result = result.HasError ? Result.Error : Result.Success
+                            //UserCode = context.CorrelationContext.UserId
+                        });
+                    }
+                }
+
             return result;
-        }            
+        }
     }
 }
