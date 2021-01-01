@@ -138,9 +138,10 @@ namespace Quantic.Log.UnitTest
 
         public class ReqLogger : IRequestLogger
         {
-            public void Log(RequestLog log)
+            public Task Log(RequestLog log)
             {
-                
+                return Task.CompletedTask;
+                                 
             }
         }
     }

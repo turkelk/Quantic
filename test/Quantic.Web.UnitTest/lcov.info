@@ -1,27 +1,82 @@
-SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/BaseController.cs
-FN:12,Quantic.Core.RequestContext Quantic.Web.BaseController::get_Context()
-FNDA:0,Quantic.Core.RequestContext Quantic.Web.BaseController::get_Context()
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Composition/CompositionWebExtension.cs
+FN:8,Quantic.Core.IQuanticBuilder Quantic.Web.CompositionWebExtension::AddValidationDecorator(Quantic.Core.IQuanticBuilder,System.Action`1<Quantic.Web.QuanticWebOptions>)
+FNDA:0,Quantic.Core.IQuanticBuilder Quantic.Web.CompositionWebExtension::AddValidationDecorator(Quantic.Core.IQuanticBuilder,System.Action`1<Quantic.Web.QuanticWebOptions>)
+DA:9,0
+DA:10,0
+DA:11,0
 DA:13,0
 DA:14,0
+BRDA:11,8,1,0
+BRDA:11,8,0,0
+LF:5
+LH:0
+BRF:2
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Composition/QuanticWebOptions.cs
+FN:8,System.Void Quantic.Web.QuanticWebOptions::AddMandatoryHeader(System.String)
+FNDA:0,System.Void Quantic.Web.QuanticWebOptions::AddMandatoryHeader(System.String)
+DA:9,0
+DA:10,0
+DA:11,0
+FN:13,System.Void Quantic.Web.QuanticWebOptions::AddMandatoryHeader(System.String,Quantic.Web.IHeaderValidator)
+FNDA:0,System.Void Quantic.Web.QuanticWebOptions::AddMandatoryHeader(System.String,Quantic.Web.IHeaderValidator)
+DA:14,0
 DA:15,0
-DA:17,0
+DA:16,0
+FN:18,System.Void Quantic.Web.QuanticWebOptions::AddMandatoryHeaders(System.Collections.Generic.List`1<System.String>)
+FNDA:0,System.Void Quantic.Web.QuanticWebOptions::AddMandatoryHeaders(System.Collections.Generic.List`1<System.String>)
 DA:19,0
 DA:20,0
 DA:21,0
+DA:22,0
+DA:23,0
 DA:24,0
-DA:25,0
-DA:26,0
-BRDA:14,12,0,0
-BRDA:14,12,1,0
-BRDA:17,43,0,0
-BRDA:17,43,1,0
-BRDA:17,74,0,0
-BRDA:17,74,1,0
-BRDA:19,121,0,0
-BRDA:19,121,1,0
-LF:10
+BRDA:20,40,1,0
+BRDA:20,40,0,0
+LF:12
 LH:0
-BRF:8
+BRF:2
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/BaseController.cs
+FN:14,Quantic.Core.RequestContext Quantic.Web.BaseController::get_Context()
+FNDA:0,Quantic.Core.RequestContext Quantic.Web.BaseController::get_Context()
+DA:15,0
+DA:16,0
+DA:17,0
+DA:19,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:26,0
+DA:28,0
+DA:29,0
+DA:31,0
+DA:32,0
+DA:34,0
+DA:35,0
+DA:37,0
+DA:38,0
+BRDA:16,12,0,0
+BRDA:16,12,1,0
+BRDA:19,44,0,0
+BRDA:19,44,1,0
+BRDA:19,75,0,0
+BRDA:19,75,1,0
+BRDA:21,124,0,0
+BRDA:21,124,1,0
+BRDA:28,168,0,0
+BRDA:28,168,1,0
+BRDA:34,252,0,0
+BRDA:34,252,1,0
+LF:16
+LH:0
+BRF:12
 BRH:0
 FNF:1
 FNH:0
@@ -106,55 +161,144 @@ FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension
 DA:62,0
 DA:63,0
 DA:64,0
-FN:65,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::GetError(Quantic.Core.CommandResult)
+FN:66,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::GetError(Quantic.Core.CommandResult)
 FNDA:14,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.CommandResultExtension::GetError(Quantic.Core.CommandResult)
-DA:66,14
 DA:67,14
 DA:68,14
 DA:69,14
 DA:70,14
-BRDA:67,7,0,6
-BRDA:67,7,1,8
-FN:71,System.Void Quantic.Web.CommandResultExtension::.cctor()
-FNDA:1,System.Void Quantic.Web.CommandResultExtension::.cctor()
-DA:72,1
-LF:41
-LH:35
+DA:71,14
+BRDA:68,7,0,6
+BRDA:68,7,1,8
+LF:40
+LH:34
 BRF:28
 BRH:26
-FNF:11
-FNH:9
+FNF:10
+FNH:8
 end_of_record
-SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/QueryResultExtension.cs
-FN:9,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::Ok(Quantic.Core.QueryResult`1<T>)
-FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::Ok(Quantic.Core.QueryResult`1<T>)
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/HeaderMissingException.cs
+FN:5,System.Void Quantic.Web.HeaderMissingException::.ctor(System.String)
+FNDA:0,System.Void Quantic.Web.HeaderMissingException::.ctor(System.String)
+DA:6,0
+DA:7,0
+DA:9,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/HeaderValidationException.cs
+FN:5,System.Void Quantic.Web.HeaderValidationException::.ctor(System.String)
+FNDA:0,System.Void Quantic.Web.HeaderValidationException::.ctor(System.String)
+DA:6,0
+DA:7,0
+DA:9,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/HttpHeaderValidationResult.cs
+FN:11,System.Boolean Quantic.Web.HttpHeaderValidationResult::get_IsSuccess()
+FNDA:0,System.Boolean Quantic.Web.HttpHeaderValidationResult::get_IsSuccess()
+DA:12,0
+FN:12,System.String Quantic.Web.HttpHeaderValidationResult::get_Code()
+FNDA:0,System.String Quantic.Web.HttpHeaderValidationResult::get_Code()
+DA:13,0
+FN:13,System.String Quantic.Web.HttpHeaderValidationResult::get_Message()
+FNDA:0,System.String Quantic.Web.HttpHeaderValidationResult::get_Message()
+DA:14,0
+FN:5,System.Void Quantic.Web.HttpHeaderValidationResult::.ctor(System.String,System.String,System.Boolean)
+FNDA:0,System.Void Quantic.Web.HttpHeaderValidationResult::.ctor(System.String,System.String,System.Boolean)
+DA:6,0
+DA:7,0
+DA:8,0
+DA:9,0
+DA:10,0
+DA:11,0
+FN:4,System.Void Quantic.Web.HttpHeaderValidationResult::.cctor()
+FNDA:0,System.Void Quantic.Web.HttpHeaderValidationResult::.cctor()
+DA:5,0
+LF:10
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/MandatoryHeadersHolder.cs
+FN:9,System.Boolean Quantic.Web.MandatoryHeadersHolder::Add(System.String,Quantic.Web.IHeaderValidator)
+FNDA:0,System.Boolean Quantic.Web.MandatoryHeadersHolder::Add(System.String,Quantic.Web.IHeaderValidator)
 DA:10,0
 DA:11,0
 DA:12,0
-BRDA:11,8,0,0
-BRDA:11,8,1,0
-FN:14,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::ToResponse(Quantic.Core.QueryResult`1<T>,System.Func`2<Quantic.Core.QueryResult`1<T>,Microsoft.AspNetCore.Mvc.IActionResult>)
-FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::ToResponse(Quantic.Core.QueryResult`1<T>,System.Func`2<Quantic.Core.QueryResult`1<T>,Microsoft.AspNetCore.Mvc.IActionResult>)
+FN:14,System.Void Quantic.Web.MandatoryHeadersHolder::Validate(System.Collections.Generic.Dictionary`2<System.String,System.String>)
+FNDA:0,System.Void Quantic.Web.MandatoryHeadersHolder::Validate(System.Collections.Generic.Dictionary`2<System.String,System.String>)
 DA:15,0
 DA:16,0
 DA:17,0
-FN:18,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::GetError(Quantic.Core.QueryResult`1<T>)
-FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::GetError(Quantic.Core.QueryResult`1<T>)
+DA:18,0
 DA:19,0
+DA:20,0
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:29,0
+DA:30,0
+BRDA:16,234,1,0
+BRDA:18,49,0,0
+BRDA:18,49,1,0
+BRDA:25,124,0,0
+BRDA:27,164,0,0
+BRDA:27,164,1,0
+BRDA:25,124,1,0
+BRDA:16,234,0,0
+FN:6,System.Void Quantic.Web.MandatoryHeadersHolder::.cctor()
+FNDA:0,System.Void Quantic.Web.MandatoryHeadersHolder::.cctor()
+DA:7,0
+LF:16
+LH:0
+BRF:8
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/QueryResultExtension.cs
+FN:11,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::Ok(Quantic.Core.QueryResult`1<T>)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::Ok(Quantic.Core.QueryResult`1<T>)
+DA:12,0
+DA:13,0
+DA:14,0
+BRDA:13,8,0,0
+BRDA:13,8,1,0
+FN:15,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::ToResponse(Quantic.Core.QueryResult`1<T>,System.Func`2<Quantic.Core.QueryResult`1<T>,Microsoft.AspNetCore.Mvc.IActionResult>)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::ToResponse(Quantic.Core.QueryResult`1<T>,System.Func`2<Quantic.Core.QueryResult`1<T>,Microsoft.AspNetCore.Mvc.IActionResult>)
+DA:16,0
+DA:17,0
+DA:18,0
+FN:19,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::GetError(Quantic.Core.QueryResult`1<T>)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Quantic.Web.QueryResultExtension::GetError(Quantic.Core.QueryResult`1<T>)
 DA:20,0
 DA:21,0
 DA:22,0
 DA:23,0
-BRDA:20,7,0,0
-BRDA:20,7,1,0
-FN:24,System.Object Quantic.Web.QueryResultExtension::AsQueryResponse(Quantic.Core.QueryResult`1<T>)
+DA:24,0
+BRDA:21,7,0,0
+BRDA:21,7,1,0
+FN:25,System.Object Quantic.Web.QueryResultExtension::AsQueryResponse(Quantic.Core.QueryResult`1<T>)
 FNDA:0,System.Object Quantic.Web.QueryResultExtension::AsQueryResponse(Quantic.Core.QueryResult`1<T>)
-DA:25,0
 DA:26,0
 DA:27,0
 DA:28,0
 DA:29,0
 DA:30,0
+DA:31,0
 LF:17
 LH:0
 BRF:4
@@ -208,4 +352,44 @@ BRF:8
 BRH:7
 FNF:3
 FNH:3
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/StringOrNullHeaderValidator.cs
+FN:8,Quantic.Web.StringOrNullHeaderValidator Quantic.Web.StringOrNullHeaderValidator::get_Instance()
+FNDA:0,Quantic.Web.StringOrNullHeaderValidator Quantic.Web.StringOrNullHeaderValidator::get_Instance()
+DA:9,0
+FN:10,Quantic.Web.HttpHeaderValidationResult Quantic.Web.StringOrNullHeaderValidator::Validate(System.String,System.String)
+FNDA:0,Quantic.Web.HttpHeaderValidationResult Quantic.Web.StringOrNullHeaderValidator::Validate(System.String,System.String)
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:17,0
+DA:18,0
+BRDA:12,9,0,0
+BRDA:14,30,0,0
+BRDA:14,30,1,0
+BRDA:12,9,1,0
+FN:4,System.Void Quantic.Web.StringOrNullHeaderValidator::.cctor()
+FNDA:0,System.Void Quantic.Web.StringOrNullHeaderValidator::.cctor()
+DA:5,0
+FN:6,System.Void Quantic.Web.StringOrNullHeaderValidator::.ctor()
+FNDA:0,System.Void Quantic.Web.StringOrNullHeaderValidator::.ctor()
+DA:7,0
+LF:9
+LH:0
+BRF:4
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Web/Main/MandatoryHeaders.cs
+FN:6,System.Collections.Generic.List`1<System.String> Quantic.Web.Main.MandatoryHeaders::get_Headers()
+FNDA:0,System.Collections.Generic.List`1<System.String> Quantic.Web.Main.MandatoryHeaders::get_Headers()
+DA:7,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
 end_of_record

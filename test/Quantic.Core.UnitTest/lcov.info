@@ -33,23 +33,21 @@ DA:16,2
 DA:18,4
 DA:19,6
 DA:20,6
-DA:21,6
+DA:21,4
 DA:22,4
-DA:23,4
-DA:26,4
+DA:25,4
+DA:26,6
 DA:27,6
-DA:28,6
-DA:29,6
-DA:30,4
-DA:31,4
-DA:33,2
-DA:34,2
+DA:28,4
+DA:29,4
+DA:31,2
+DA:32,2
 BRDA:11,19,1,3
 BRDA:11,19,0,3
 BRDA:13,52,0,1
 BRDA:13,52,1,2
-LF:20
-LH:20
+LF:18
+LH:18
 BRF:8
 BRH:8
 FNF:1
@@ -79,38 +77,58 @@ FNF:1
 FNH:1
 end_of_record
 SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Core/Request/RequestContext.cs
-FN:17,System.String Quantic.Core.RequestContext::get_TraceId()
+FN:19,System.String Quantic.Core.RequestContext::get_TraceId()
 FNDA:1,System.String Quantic.Core.RequestContext::get_TraceId()
-DA:18,1
-FN:18,System.Collections.Generic.IDictionary`2<System.String,System.String> Quantic.Core.RequestContext::get_Headers()
+DA:20,1
+FN:20,System.Collections.Generic.IDictionary`2<System.String,System.String> Quantic.Core.RequestContext::get_Headers()
 FNDA:3,System.Collections.Generic.IDictionary`2<System.String,System.String> Quantic.Core.RequestContext::get_Headers()
-DA:19,3
-FN:22,System.String Quantic.Core.RequestContext::get_AcceptLanguage()
+DA:21,3
+FN:25,System.String Quantic.Core.RequestContext::get_AcceptLanguage()
 FNDA:2,System.String Quantic.Core.RequestContext::get_AcceptLanguage()
-DA:23,2
-DA:25,2
 DA:26,2
 DA:27,2
-FN:7,System.Void Quantic.Core.RequestContext::.ctor(System.String,System.Collections.Generic.IDictionary`2<System.String,System.String>)
+DA:28,2
+FN:33,System.String Quantic.Core.RequestContext::get_UserId()
+FNDA:0,System.String Quantic.Core.RequestContext::get_UserId()
+DA:34,0
+DA:35,0
+DA:36,0
+FN:39,System.String Quantic.Core.RequestContext::GetValue(System.String)
+FNDA:2,System.String Quantic.Core.RequestContext::GetValue(System.String)
+DA:40,2
+DA:41,2
+DA:42,2
+DA:43,2
+DA:44,2
+BRDA:42,10,0,0
+BRDA:42,10,1,2
+FN:46,System.Boolean Quantic.Core.RequestContext::GetOrAdd(System.String,System.String)
+FNDA:0,System.Boolean Quantic.Core.RequestContext::GetOrAdd(System.String,System.String)
+DA:47,0
+DA:48,0
+DA:49,0
+BRDA:48,8,0,0
+BRDA:48,8,1,0
+FN:9,System.Void Quantic.Core.RequestContext::.ctor(System.String,System.Collections.Generic.IDictionary`2<System.String,System.String>)
 FNDA:6,System.Void Quantic.Core.RequestContext::.ctor(System.String,System.Collections.Generic.IDictionary`2<System.String,System.String>)
-DA:8,6
-DA:9,6
 DA:10,6
 DA:11,6
 DA:12,6
 DA:13,6
-DA:15,4
-DA:16,3
-BRDA:11,15,0,4
-BRDA:11,15,1,2
-BRDA:15,39,0,1
-BRDA:15,39,1,3
-LF:14
-LH:14
-BRF:4
-BRH:4
-FNF:4
-FNH:4
+DA:14,6
+DA:15,6
+DA:17,4
+DA:18,3
+BRDA:13,15,0,4
+BRDA:13,15,1,2
+BRDA:17,39,0,1
+BRDA:17,39,1,3
+LF:24
+LH:18
+BRF:8
+BRH:5
+FNF:7
+FNH:5
 end_of_record
 SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Core/Result/CommandResult.cs
 FN:7,System.Guid Quantic.Core.CommandResult::get_Guid()
@@ -199,6 +217,11 @@ DA:22,20
 FN:22,System.String Quantic.Core.Failure::get_Message()
 FNDA:6,System.String Quantic.Core.Failure::get_Message()
 DA:23,6
+FN:25,System.String Quantic.Core.Failure::ToString()
+FNDA:0,System.String Quantic.Core.Failure::ToString()
+DA:26,0
+DA:27,0
+DA:28,0
 FN:6,System.Void Quantic.Core.Failure::.ctor(System.String,System.String)
 FNDA:31,System.Void Quantic.Core.Failure::.ctor(System.String,System.String)
 DA:7,31
@@ -215,11 +238,11 @@ FNDA:22,System.Void Quantic.Core.Failure::.ctor(System.String)
 DA:17,22
 DA:18,22
 DA:20,22
-LF:12
+LF:15
 LH:12
 BRF:2
 BRH:2
-FNF:4
+FNF:5
 FNH:4
 end_of_record
 SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Core/Result/QueryResult.cs
@@ -315,8 +338,8 @@ FNDA:32,System.Boolean Quantic.Core.Result::get_HasError()
 DA:55,32
 DA:56,32
 DA:57,32
-FN:62,System.String Quantic.Core.Result::ErrosToString()
-FNDA:1,System.String Quantic.Core.Result::ErrosToString()
+FN:62,System.String Quantic.Core.Result::ErrorsToString()
+FNDA:1,System.String Quantic.Core.Result::ErrorsToString()
 DA:63,1
 DA:64,1
 DA:65,1
@@ -396,67 +419,78 @@ FNF:4
 FNH:3
 end_of_record
 SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Core/Util/Extensions.cs
-FN:7,System.Void Quantic.Core.Extensions::Guard(System.Object,System.String,System.String)
+FN:8,System.Void Quantic.Core.Extensions::Guard(System.Object,System.String,System.String)
 FNDA:0,System.Void Quantic.Core.Extensions::Guard(System.Object,System.String,System.String)
-DA:8,0
 DA:9,0
 DA:10,0
-DA:12,0
-BRDA:9,7,0,0
-BRDA:9,7,1,0
-FN:13,System.Void Quantic.Core.Extensions::Guard(System.Object,System.String)
+DA:11,0
+DA:13,0
+BRDA:10,7,0,0
+BRDA:10,7,1,0
+FN:14,System.Void Quantic.Core.Extensions::Guard(System.Object,System.String)
 FNDA:9,System.Void Quantic.Core.Extensions::Guard(System.Object,System.String)
-DA:14,9
-DA:15,11
-DA:16,2
-DA:18,7
-BRDA:15,7,0,2
-BRDA:15,7,1,7
-FN:19,System.Void Quantic.Core.Extensions::Guard(System.String,System.String,System.String)
+DA:15,9
+DA:16,11
+DA:17,2
+DA:19,7
+BRDA:16,7,0,2
+BRDA:16,7,1,7
+FN:20,System.Void Quantic.Core.Extensions::Guard(System.String,System.String,System.String)
 FNDA:0,System.Void Quantic.Core.Extensions::Guard(System.String,System.String,System.String)
-DA:20,0
 DA:21,0
 DA:22,0
-DA:25,0
+DA:23,0
 DA:26,0
-DA:28,0
-BRDA:21,7,0,0
-BRDA:21,7,1,0
-BRDA:25,26,0,0
-BRDA:25,26,1,0
-FN:29,System.Void Quantic.Core.Extensions::Guard(System.String,System.String)
+DA:27,0
+DA:29,0
+BRDA:22,7,0,0
+BRDA:22,7,1,0
+BRDA:26,26,0,0
+BRDA:26,26,1,0
+FN:30,System.Void Quantic.Core.Extensions::Guard(System.String,System.String)
 FNDA:0,System.Void Quantic.Core.Extensions::Guard(System.String,System.String)
-DA:30,0
 DA:31,0
 DA:32,0
-DA:35,0
+DA:33,0
 DA:36,0
-DA:38,0
-BRDA:31,7,0,0
-BRDA:31,7,1,0
-BRDA:35,25,0,0
-BRDA:35,25,1,0
-FN:40,System.Boolean Quantic.Core.Extensions::HasError(Quantic.Core.CommandResult,System.String)
+DA:37,0
+DA:39,0
+BRDA:32,7,0,0
+BRDA:32,7,1,0
+BRDA:36,25,0,0
+BRDA:36,25,1,0
+FN:41,System.Boolean Quantic.Core.Extensions::HasError(Quantic.Core.CommandResult,System.String)
 FNDA:0,System.Boolean Quantic.Core.Extensions::HasError(Quantic.Core.CommandResult,System.String)
-DA:41,0
 DA:42,0
-DA:44,0
+DA:43,0
 DA:45,0
-BRDA:42,22,0,0
-BRDA:42,22,1,0
-FN:46,System.Boolean Quantic.Core.Extensions::HasError(Quantic.Core.QueryResult`1<TResult>,System.String)
+DA:46,0
+BRDA:43,22,0,0
+BRDA:43,22,1,0
+FN:47,System.Boolean Quantic.Core.Extensions::HasError(Quantic.Core.QueryResult`1<TResult>,System.String)
 FNDA:0,System.Boolean Quantic.Core.Extensions::HasError(Quantic.Core.QueryResult`1<TResult>,System.String)
-DA:47,0
 DA:48,0
-DA:50,0
+DA:49,0
 DA:51,0
-BRDA:48,22,0,0
-BRDA:48,22,1,0
-LF:28
+DA:52,0
+BRDA:49,22,0,0
+BRDA:49,22,1,0
+FN:54,System.String Quantic.Core.Extensions::GetValue(Quantic.Core.RequestContext,System.String)
+FNDA:0,System.String Quantic.Core.Extensions::GetValue(Quantic.Core.RequestContext,System.String)
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+FN:60,System.Boolean Quantic.Core.Extensions::Add(Quantic.Core.RequestContext,System.String,System.String)
+FNDA:0,System.Boolean Quantic.Core.Extensions::Add(Quantic.Core.RequestContext,System.String,System.String)
+DA:61,0
+DA:62,0
+DA:63,0
+LF:35
 LH:4
 BRF:16
 BRH:2
-FNF:6
+FNF:8
 FNH:1
 end_of_record
 SF:/Users/turkelgadirzade/Desktop/Projects/Quantic/src/Quantic.Core/Util/AsyncLazy.cs
