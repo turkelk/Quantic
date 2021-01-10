@@ -15,6 +15,7 @@ namespace Quantic.Ef
         {
 
         }
+        
         internal RequestContext RequestContext { get; set; }
 
         public override int SaveChanges()

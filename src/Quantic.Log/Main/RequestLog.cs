@@ -6,7 +6,7 @@ namespace Quantic.Log
     public class RequestLog
     {
         public string Name { get; set; }
-        public IBaseRequest Request { get; set; }
+        public object Request { get; set; }
         public object Response { get; set; }
         public DateTime RequestDate { get; set; }
         public DateTime ResponseDate { get; set; }
