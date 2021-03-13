@@ -54,9 +54,9 @@ namespace Quantic.Ef
                 {
                     case EntityState.Added:
                         entry.CurrentValues[BaseProperties.IsDeleted] = false;
-                        entry.CurrentValues[BaseProperties.Guid] = Guid.NewGuid();
+                        entry.CurrentValues[BaseProperties.Guid] = entry.CurrentValues[BaseProperties.Guid] ?? Guid.NewGuid();
                         entry.CurrentValues[BaseProperties.IsDeleted] = false;
-                        entry.CurrentValues[BaseProperties.CreatedBy] = RequestContext.UserId ?? "";
+                        entry.CurrentValues[BaseProperties.CreatedBy] = RequestContext?.UserId ?? "";
                         entry.CurrentValues[BaseProperties.CreatedAt] = DateTime.Now.ToUniversalTime().ToUnixTimeMilliseconds();
                         entry.CurrentValues[BaseProperties.UpdatedAt] = default(long);
                         entry.CurrentValues[BaseProperties.UpdatedBy] = default;
@@ -65,14 +65,14 @@ namespace Quantic.Ef
                         entry.State = EntityState.Modified;
                         entry.CurrentValues[BaseProperties.IsDeleted] = true;
                         entry.CurrentValues[BaseProperties.UpdatedAt] = DateTime.Now.ToUniversalTime().ToUnixTimeMilliseconds();
-                        entry.CurrentValues[BaseProperties.UpdatedBy] = RequestContext.UserId ?? "";
+                        entry.CurrentValues[BaseProperties.UpdatedBy] = RequestContext?.UserId ?? "";
                         entry.Property(BaseProperties.Guid).IsModified = false;
                         entry.Property(BaseProperties.CreatedAt).IsModified = false;
                         entry.Property(BaseProperties.CreatedBy).IsModified = false;
                         break;
                     case EntityState.Modified:
                         entry.CurrentValues[BaseProperties.UpdatedAt] = DateTime.Now.ToUniversalTime().ToUnixTimeMilliseconds();
-                        entry.CurrentValues[BaseProperties.UpdatedBy] = RequestContext.UserId ?? "";
+                        entry.CurrentValues[BaseProperties.UpdatedBy] = RequestContext?.UserId ?? "";
                         entry.Property(BaseProperties.Guid).IsModified = false;
                         entry.Property(BaseProperties.CreatedAt).IsModified = false;
                         entry.Property(BaseProperties.CreatedBy).IsModified = false;
