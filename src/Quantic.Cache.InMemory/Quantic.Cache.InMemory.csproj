@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp5.0</TargetFramework>
-    <PackageVersion>2.1.0</PackageVersion>
+    <PackageVersion>2.1.1</PackageVersion>
     <Authors>Turkel Gadirzade</Authors>
     <Description>Quantic framework inmemory cache extension</Description>
     <PackOnBuild>true</PackOnBuild>

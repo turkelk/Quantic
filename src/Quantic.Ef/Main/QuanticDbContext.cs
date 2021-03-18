@@ -15,7 +15,7 @@ namespace Quantic.Ef
         {
 
         }
-        
+
         internal RequestContext RequestContext { get; set; }
 
         public override int SaveChanges()
@@ -54,7 +54,7 @@ namespace Quantic.Ef
                 {
                     case EntityState.Added:
                         entry.CurrentValues[BaseProperties.IsDeleted] = false;
-                        entry.CurrentValues[BaseProperties.Guid] = entry.CurrentValues[BaseProperties.Guid] ?? Guid.NewGuid();
+                        entry.CurrentValues[BaseProperties.Guid] = (Guid)entry.CurrentValues[BaseProperties.Guid] == Guid.Empty ? Guid.NewGuid() : entry.CurrentValues[BaseProperties.Guid];
                         entry.CurrentValues[BaseProperties.IsDeleted] = false;
                         entry.CurrentValues[BaseProperties.CreatedBy] = RequestContext?.UserId ?? "";
                         entry.CurrentValues[BaseProperties.CreatedAt] = DateTime.Now.ToUniversalTime().ToUnixTimeMilliseconds();

@@ -43,7 +43,12 @@ namespace Quantic.Cache.InMemory
 
                 if (getResult.HasError)
                 {
-                    throw new Exception($"Cache handler error.Error:getResult.ErrosToString()");
+                    throw new Exception($"Cache handler error.Error:{getResult.ErrorsToString()}");
+                }
+
+                if (getResult.Code == Messages.NotFound)
+                {
+                    throw new Exception($"No record found to cache");
                 }
 
                 if (queryInfo.CacheOption.ExpireInSeconds > 0)
