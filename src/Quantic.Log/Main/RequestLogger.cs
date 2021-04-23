@@ -17,6 +17,8 @@ namespace Quantic.Log
 
         public async Task Log(RequestLog log)
         {
+            log.Duration = (int)(log.ResponseDate - log.RequestDate).TotalMilliseconds;
+
             using (var stream = new MemoryStream())
             {
                 await JsonSerializer.SerializeAsync<RequestLog>(stream, log);
