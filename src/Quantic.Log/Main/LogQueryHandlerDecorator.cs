@@ -56,8 +56,8 @@ namespace Quantic.Log
                             RequestDate = requestDate,
                             Response = result,
                             ResponseDate = DateTime.UtcNow,
-                            Result = result.HasError ? Result.Error : Result.Success
-                            //UserCode = context.CorrelationContext.UserId
+                            Result = result.HasError ? Result.Error : Result.Success,
+                            UserCode = context.UserId
                         });
                     }
                 }
