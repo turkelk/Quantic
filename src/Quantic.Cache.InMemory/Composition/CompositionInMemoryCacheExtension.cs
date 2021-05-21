@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Caching.Memory;
@@ -18,7 +19,14 @@ namespace Quantic.Cache.InMemory
 
             builder.Services.AddSingleton<IMemoryCache>(new MemoryCache(cacheOptions));
 
-            builder.Services.AddSingleton<IQueryInfoProvider,QueryInfoProvider>();            
+            List<Type> types = new List<Type>();
+
+            foreach(var asm in builder.Assemblies)
+            {
+                types.AddRange(asm.GetTypes());
+            }
+
+            builder.Services.AddSingleton<IQueryInfoProvider>(new QueryInfoProvider(types));            
 
             foreach(var service in builder.Services.ToList().Where(x=> ShouldDecorate(x)))
             {

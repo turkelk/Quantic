@@ -12,30 +12,42 @@ namespace Quantic.Cache.InMemory
         private readonly IQueryHandler<TQuery, TResponse> decoratedRequestHandler;
         private readonly IMemoryCache memoryCache;
         private readonly IQueryInfoProvider queryInfoProvider;
+        private readonly ILogger logger;
 
         public InMemoryCacheQueryHandlerDecorator(IQueryHandler<TQuery, TResponse> decoratedRequestHandler,
             IMemoryCache memoryCache,
-            IQueryInfoProvider queryInfoProvider)
+            IQueryInfoProvider queryInfoProvider,
+            ILoggerFactory loggerFactory)
         {
             this.decoratedRequestHandler = decoratedRequestHandler;
             this.memoryCache = memoryCache;
             this.queryInfoProvider = queryInfoProvider;
+            this.logger = loggerFactory.CreateLogger("InMemoryCacheQueryHandlerDecorator");
         }
 
         public async Task<QueryResult<TResponse>> Handle(TQuery query, RequestContext context)
         {
+            logger.LogDebug("Cache decorator starting");
+
             var queryInfo = queryInfoProvider.GetQueryInfo(query.GetType().Name);
+
+            logger.LogDebug($"Query info query name is  {queryInfo?.Name}");
 
             // no way but lets check. no need to break the call.
             if (queryInfo == null || !queryInfo.HasCache)
             {
-                //  log critical ?
+                logger.LogDebug($"Query info is null or query info has cache is {queryInfo?.HasCache}");
+
                 return await decoratedRequestHandler.Handle(query, context);
             }
 
             string cacheEntryKey = "";
 
+            logger.LogDebug($"Getting CacheEntryKey");
+
             cacheEntryKey = GetCacheEntryKey(query, context, queryInfo);
+
+            logger.LogDebug($"CacheEntryKey getted successfully: {cacheEntryKey}");
 
             var result = await memoryCache.GetOrAddAsync<TResponse>(cacheEntryKey, async entry =>
             {
@@ -80,7 +92,7 @@ namespace Quantic.Cache.InMemory
                     throw new CacheKeyProviderTypeException($"Key provider should implement {nameof(ICacheKeyProvider)} and must have public constructor that accepts query (IQuery<T>) and context (RequestContext) as constructor parameter. Error detail: {ex.ToString()} ");
                 }
 
-                cacheEntryKey = $"{queryInfo}:{key}";
+                cacheEntryKey = $"{queryInfo.Name}:{key}";
             }
             else
             {

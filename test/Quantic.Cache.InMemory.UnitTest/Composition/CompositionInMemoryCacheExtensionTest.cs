@@ -3,6 +3,8 @@ using Microsoft.Extensions.Caching.Memory;
 using Xunit;
 using Microsoft.Extensions.DependencyInjection;
 using Quantic.Core;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Quantic.Cache.InMemory.UnitTest
 {
@@ -19,7 +21,7 @@ namespace Quantic.Cache.InMemory.UnitTest
                 {
                     typeof(TestCompositonQuery).Assembly
                 };
-            }).AddMemoryCacheDecorator(opt=>
+            }).AddMemoryCacheDecorator(opt =>
             {
 
             });
@@ -61,6 +63,7 @@ namespace Quantic.Cache.InMemory.UnitTest
             var expectedType = typeof(InMemoryCacheQueryHandlerDecorator<,>).GetGenericTypeDefinition();
 
             var builder = new ServiceCollection();
+            builder.AddTransient<ILoggerFactory, NullLoggerFactory>();
 
             builder.AddQuantic(opt =>
             {
