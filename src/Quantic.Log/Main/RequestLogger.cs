@@ -24,7 +24,11 @@ namespace Quantic.Log
                 await JsonSerializer.SerializeAsync<RequestLog>(stream, log);
                 stream.Position = 0;
                 using var reader = new StreamReader(stream);
-                logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, await reader.ReadToEndAsync());
+                
+                if (log.Result == Result.Success)
+                    logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, await reader.ReadToEndAsync());
+                else
+                    logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, await reader.ReadToEndAsync());
             }
         }
     }
