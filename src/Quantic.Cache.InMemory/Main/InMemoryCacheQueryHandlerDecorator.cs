@@ -83,7 +83,7 @@ namespace Quantic.Cache.InMemory
 
                 try
                 {
-                    key = ((ICacheKeyProvider)Activator.CreateInstance(queryInfo.CacheOption.CacheKeyProviderType, query, context)).GetKey();
+                    key = ((ICacheKeyProvider)Activator.CreateInstance(queryInfo.CacheOption.CacheKeyProviderType)).GetKey(query, context);
                 }
                 // could be various exceptions. 
                 // instead of handling one by one lets give propper message and include exception details in message

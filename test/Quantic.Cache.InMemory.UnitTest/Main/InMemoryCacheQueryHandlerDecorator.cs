@@ -81,33 +81,6 @@ namespace Quantic.Cache.InMemory.UnitTest
         }
 
         [Fact]
-        public async Task ShouldThrowCacheKeyProviderTypeExceptionIfCacheKeyProviderTypeDoesNotHavePropperConstructor()
-        {
-            // Arrange
-            var qip = new QueryInfoProvider(new List<Type>
-            {
-                typeof(CacheKeyProviderDoesNotHavePropperConstructorQueryHandler)
-            });
-
-            var cacheQueryHandlerDecorator = new InMemoryCacheQueryHandlerDecorator<CacheKeyProviderDoesNotHavePropperConstructorQuery, string>(new CacheKeyProviderDoesNotHavePropperConstructorQueryHandler(), cache, qip, new NullLoggerFactory());
-            var query = new CacheKeyProviderDoesNotHavePropperConstructorQuery();
-            bool exceptionThrown = false;
-
-            // Act            
-            try
-            {
-                var result = await cacheQueryHandlerDecorator.Handle(query, Util.Context);
-            }
-            catch (CacheKeyProviderTypeException)
-            {
-                exceptionThrown = true;
-            }
-
-            // Assert
-            Assert.True(exceptionThrown);
-        }
-
-        [Fact]
         public async Task ShouldCacheExpireInSecondsDuration()
         {
             // Arrange
