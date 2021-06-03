@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Quantic.Core;
-using Quantic.Log.Util;
 
 namespace Quantic.Log
 {
@@ -17,13 +17,13 @@ namespace Quantic.Log
 
         public LogQueryHandlerDecorator(IRequestLogger requestLogger,
             IQueryHandler<TQuery, TResponse> decoratedRequestHandler,
-            IOptionsSnapshot<LogSettings> logSettingsOption,
+            LogSettings logSettings,
             ILogger<TQuery> logger)
         {
             this.requestLogger = requestLogger;
             this.decoratedRequestHandler = decoratedRequestHandler;
             this.logger = logger;
-            this.logSettings = logSettingsOption.Value;
+            this.logSettings = logSettings;
         }
 
         public async Task<QueryResult<TResponse>> Handle(TQuery query, RequestContext context)
@@ -44,17 +44,17 @@ namespace Quantic.Log
                 finally
                 {
                     var queryName = query.GetType().Name;
-                    bool shouldLog = logSettings?.ShouldLog(queryName) ?? true;
+                    var logSetting = logSettings.Settings?.FirstOrDefault(x => x.Name == queryName);
 
-                    if (shouldLog)
+                    if (logSetting == null || logSetting.ShouldLog)
                     {
                         await requestLogger.Log(new RequestLog
                         {
                             Name = queryName,
                             CorrelationId = context.TraceId,
-                            Request = query,
+                            Request = logSetting?.LogRequest ?? true ? query : null,
                             RequestDate = requestDate,
-                            Response = result,
+                            Response = logSetting?.LogResponse ?? true ? result : new { result.Code, result.Errors, result.HasError, result.IsSuccess, result.Message, result.Retry },
                             ResponseDate = DateTime.UtcNow,
                             Result = result.HasError ? Result.Error : Result.Success,
                             UserCode = context.UserId

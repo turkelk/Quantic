@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Quantic.Core;
-using Quantic.Log.Util;
 
 namespace Quantic.Log
 {
@@ -18,13 +18,13 @@ namespace Quantic.Log
 
         public LogCommandHandlerDecorator(IRequestLogger requestLogger,
             ICommandHandler<TCommand> decoratedRequestHandler,
-            IOptionsSnapshot<LogSettings> logSettingsOption,
+            LogSettings logSettings,
             ILogger<TCommand> logger)
         {
             this.requestLogger = requestLogger;
             this.decoratedRequestHandler = decoratedRequestHandler;
             this.logger = logger;
-            this.logSettings = logSettingsOption.Value;
+            this.logSettings = logSettings;
         }
 
         public async Task<CommandResult> Handle(TCommand command, RequestContext context)
@@ -45,15 +45,15 @@ namespace Quantic.Log
                 finally
                 {
                     var commandName = command.GetType().Name;
-                    bool shouldLog = logSettings?.ShouldLog(commandName) ?? true;
+                    var logSetting = logSettings.Settings?.FirstOrDefault(x => x.Name == commandName);
 
-                    if (shouldLog)
+                    if (logSetting == null || logSetting.ShouldLog)
                     {
                         await requestLogger.Log(new RequestLog
                         {
                             Name = commandName,
                             CorrelationId = context.TraceId,
-                            Request = command,
+                            Request = logSetting?.LogRequest ?? true ? command : null,
                             RequestDate = requestDate,
                             Response = result,
                             ResponseDate = DateTime.UtcNow,
