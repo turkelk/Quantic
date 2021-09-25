@@ -10,6 +10,7 @@ namespace Quantic.Log
     public class LogQueryHandlerDecorator<TQuery, TResponse> : IQueryHandler<TQuery, TResponse>
                where TQuery : IQuery<TResponse>
     {
+        private const string ChannelHeader = "x-ba-channel";
         private readonly IRequestLogger requestLogger;
         private readonly IQueryHandler<TQuery, TResponse> decoratedRequestHandler;
         private readonly ILogger<TQuery> logger;
@@ -57,7 +58,8 @@ namespace Quantic.Log
                             Response = logSetting?.LogResponse ?? true ? result : new { result.Code, result.Errors, result.HasError, result.IsSuccess, result.Message, result.Retry },
                             ResponseDate = DateTime.UtcNow,
                             Result = result.HasError ? Result.Error : Result.Success,
-                            UserCode = context.UserId
+                            UserCode = context.UserId,
+                            Channel = context.GetValue(ChannelHeader)
                         });
                     }
                 }

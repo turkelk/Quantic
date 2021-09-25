@@ -15,6 +15,7 @@ namespace Quantic.Log
         public Result Result { get; set; }
         public bool Retry { get; set; }
         public int Duration { get; set; }
+        public string Channel { get; set; }        
     }
 
     public enum Result

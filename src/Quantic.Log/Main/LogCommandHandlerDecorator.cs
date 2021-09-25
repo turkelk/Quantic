@@ -10,7 +10,7 @@ namespace Quantic.Log
     public class LogCommandHandlerDecorator<TCommand> : ICommandHandler<TCommand>
         where TCommand : ICommand
     {
-
+        private const string ChannelHeader = "x-ba-channel";
         private readonly IRequestLogger requestLogger;
         private readonly ICommandHandler<TCommand> decoratedRequestHandler;
         private readonly ILogger<TCommand> logger;
@@ -58,7 +58,8 @@ namespace Quantic.Log
                             Response = result,
                             ResponseDate = DateTime.UtcNow,
                             Result = result.HasError ? Result.Error : Result.Success,
-                            UserCode = context.UserId
+                            UserCode = context.UserId,
+                            Channel = context.GetValue(ChannelHeader)
                         });
                     }
                 }
