@@ -49,27 +49,34 @@ namespace Quantic.Cache.InMemory
 
             logger.LogDebug($"CacheEntryKey getted successfully: {cacheEntryKey}");
 
+            QueryResult<TResponse> queryResult = default;
+
             var result = await memoryCache.GetOrAddAsync<TResponse>(cacheEntryKey, async entry =>
             {
-                var getResult = await decoratedRequestHandler.Handle(query, context);
+                queryResult = await decoratedRequestHandler.Handle(query, context);
 
-                if (getResult.HasError)
+                if (queryResult.HasError)
                 {
-                    throw new Exception($"Cache handler error.Error:{getResult.ErrorsToString()}");
+                    throw new Exception($"Cache handler error.Error:{queryResult.ErrorsToString()}");
                 }
 
-                if (getResult.Code == Messages.NotFound)
-                {
-                    throw new Exception($"No record found to cache");
-                }
+                // if (getResult.Code == Messages.NotFound)
+                // {
+                //     throw new Exception($"No record found to cache");
+                // }
 
                 if (queryInfo.CacheOption.ExpireInSeconds > 0)
                 {
                     entry.SetAbsoluteExpiration(new DateTimeOffset(DateTime.Now.AddSeconds(queryInfo.CacheOption.ExpireInSeconds)));
                 }
 
-                return getResult.Result;
+                return queryResult.Result;
             });
+
+            if (queryResult.Code == Messages.NotFound)
+            {
+                memoryCache.Remove(cacheEntryKey);
+            }
 
             return new QueryResult<TResponse>(result);
         }
