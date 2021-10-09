@@ -73,9 +73,10 @@ namespace Quantic.Cache.InMemory
                 return queryResult.Result;
             });
 
-            if (queryResult.Code == Messages.NotFound)
+            if (queryResult?.Code == Messages.NotFound)
             {
                 memoryCache.Remove(cacheEntryKey);
+                return queryResult;
             }
 
             return new QueryResult<TResponse>(result);
