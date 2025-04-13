@@ -13,6 +13,8 @@ using Quantic.Core;
 using Quantic.Log;
 using Quantic.MassTransit.RabbitMq;
 using Quantic.Validation;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace Identity.Api
 {
@@ -42,9 +44,22 @@ namespace Identity.Api
             });
 
             string connectionString = Configuration.GetValue<string>("CONNECTION_STRING");            
-            services.AddDbContext<DataContext>(options =>
+            services.AddDbContext<IdentityDbContext>(options =>
             {
                 options.UseMySql(connectionString);
+            });
+
+            // Configure Authentication
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            })
+            .AddCookie()
+            .AddGoogle(options =>
+            {
+                options.ClientId = Configuration["Google:ClientId"];
+                options.ClientSecret = Configuration["Google:ClientSecret"];
             });
 
             services.AddHealthChecks()
@@ -84,6 +99,7 @@ namespace Identity.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

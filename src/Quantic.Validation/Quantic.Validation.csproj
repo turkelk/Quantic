@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp5.0</TargetFramework>
-    <PackageVersion>2.1.1</PackageVersion>
+    <TargetFramework>net9.0</TargetFramework>
+    <PackageVersion>3.0.0</PackageVersion>
     <Authors>Turkel Gadirzade</Authors>
     <Description>Quantic framework validation extension</Description>
     <PackOnBuild>true</PackOnBuild>
@@ -10,12 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0" />
-    <PackageReference Include="Quantic.Core" Version="2.1.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" /> 
+    <PackageReference Include="Quantic.Core" Version="3.0.0" /> 
   </ItemGroup> 
 
-<PropertyGroup>
-  <LangVersion>8.0</LangVersion>
-</PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion> 
+  </PropertyGroup>
 
 </Project>
