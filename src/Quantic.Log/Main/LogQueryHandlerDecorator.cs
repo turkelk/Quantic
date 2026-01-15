@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Quantic.Core;
 
 namespace Quantic.Log
@@ -49,13 +48,18 @@ namespace Quantic.Log
 
                     if (logSetting == null || logSetting.ShouldLog)
                     {
+                        // If response logging is disabled, keep a small summary.
+                        var responseObj = (logSetting?.LogResponse ?? true)
+                            ? (object)result
+                            : new { result.Code, result.Errors, result.HasError, result.IsSuccess, result.Message, result.Retry };
+
                         await requestLogger.Log(new RequestLog
                         {
                             Name = queryName,
                             CorrelationId = context.TraceId,
-                            Request = logSetting?.LogRequest ?? true ? query : null,
+                            Request = SanitizeRequest(logSetting, query),
                             RequestDate = requestDate,
-                            Response = logSetting?.LogResponse ?? true ? result : new { result.Code, result.Errors, result.HasError, result.IsSuccess, result.Message, result.Retry },
+                            Response = SanitizeResponse(logSetting, responseObj),
                             ResponseDate = DateTime.UtcNow,
                             Result = result.HasError ? Result.Error : Result.Success,
                             UserCode = context.UserId,
@@ -65,6 +69,27 @@ namespace Quantic.Log
                 }
 
             return result;
+        }
+
+        private object SanitizeRequest(LogSetting logSetting, object request)
+        {
+            if (request == null) return null;
+            if (!(logSetting?.LogRequest ?? true)) return null;
+
+            var props = (logSettings?.GlobalRedactProperties ?? Array.Empty<string>())
+                .Concat(logSetting?.RedactRequestProperties ?? Array.Empty<string>());
+
+            return LogRedactor.Redact(request, props, logSettings?.RedactionMask ?? "***");
+        }
+
+        private object SanitizeResponse(LogSetting logSetting, object response)
+        {
+            if (response == null) return null;
+
+            var props = (logSettings?.GlobalRedactProperties ?? Array.Empty<string>())
+                .Concat(logSetting?.RedactResponseProperties ?? Array.Empty<string>());
+
+            return LogRedactor.Redact(response, props, logSettings?.RedactionMask ?? "***");
         }
     }
 }

@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Quantic.Core;
 using Xunit;
@@ -6,8 +5,7 @@ using Xunit;
 namespace Quantic.Log.UnitTest
 {
     public class QuanticCompositionLogExtensionTest
-    {        
-       
+    {
         [Fact]
         public void ShouldRegisterLogDecoratorForCommandHandlers()
         {
@@ -36,7 +34,6 @@ namespace Quantic.Log.UnitTest
         public void ShouldRegisterCustomRequestLogger()
         {
             // Arrange
-
             var builder = new ServiceCollection();
             builder.AddQuantic(opt =>
             {
@@ -44,7 +41,7 @@ namespace Quantic.Log.UnitTest
                 {
                     typeof(TestCompositonCommandHandler).Assembly
                 };
-            }).AddLogDecorator(opt=>
+            }).AddLogDecorator(opt =>
             {
                 opt.AddRequestLogger<ReqLogger>();
             });
@@ -62,7 +59,7 @@ namespace Quantic.Log.UnitTest
         public void ShouldRegisterDefaultRequestLogger()
         {
             // Arrange
-            var builder = new ServiceCollection();            
+            var builder = new ServiceCollection();
             builder.AddLogging();
             builder.AddQuantic(opt =>
             {
@@ -87,7 +84,7 @@ namespace Quantic.Log.UnitTest
             // Arrange
             var expectedType = typeof(LogQueryHandlerDecorator<,>).GetGenericTypeDefinition();
             var builder = new ServiceCollection();
-            
+
             builder.AddLogging();
             builder.AddQuantic(opt =>
             {
@@ -100,7 +97,7 @@ namespace Quantic.Log.UnitTest
 
             var container = builder.BuildServiceProvider();
             // Act
-            var queryHandler = container.GetService<IQueryHandler<TestCompositonQuery,string>>();
+            var queryHandler = container.GetService<IQueryHandler<TestCompositonQuery, string>>();
 
             // Assert
             Assert.NotNull(queryHandler);
@@ -114,11 +111,11 @@ namespace Quantic.Log.UnitTest
 
         public class TestCompositonCommandHandler : ICommandHandler<TestCompositonCommand>
         {
-            public Task<CommandResult> Handle(TestCompositonCommand command, RequestContext context)
+            public System.Threading.Tasks.Task<CommandResult> Handle(TestCompositonCommand command, RequestContext context)
             {
                 command.CallCount++;
 
-                return Task.FromResult(CommandResult.Success);
+                return System.Threading.Tasks.Task.FromResult(CommandResult.Success);
             }
         }
 
@@ -127,21 +124,20 @@ namespace Quantic.Log.UnitTest
             public int CallCount;
         }
 
-        public class TestCompositonQueryHandler : IQueryHandler<TestCompositonQuery,string>
+        public class TestCompositonQueryHandler : IQueryHandler<TestCompositonQuery, string>
         {
-            public Task<QueryResult<string>> Handle(TestCompositonQuery query, RequestContext context)
+            public System.Threading.Tasks.Task<QueryResult<string>> Handle(TestCompositonQuery query, RequestContext context)
             {
                 query.CallCount++;
-                return Task.FromResult(new QueryResult<string>("OK"));
+                return System.Threading.Tasks.Task.FromResult(new QueryResult<string>("OK"));
             }
         }
 
         public class ReqLogger : IRequestLogger
         {
-            public Task Log(RequestLog log)
+            public System.Threading.Tasks.Task Log(RequestLog log)
             {
-                return Task.CompletedTask;
-                                 
+                return System.Threading.Tasks.Task.CompletedTask;
             }
         }
     }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Moq;
 using Quantic.Core;
 using Quantic.Log;
@@ -16,11 +13,8 @@ namespace Genesis.Log.Test
         [Fact]
         public async Task ShouldLogIfSettingsIsNotProvided()
         {
-            // Arrange 
+            // Arrange
             LogSettings logSettings = new LogSettings();
-
-            // Mock<LogSettings> mockOptions = new Mock<LogSettings>;     
-            // mockOptions.    
 
             Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();
             Mock<ILogger<TestQuery>> mockLogger = new Mock<ILogger<TestQuery>>();
@@ -28,10 +22,14 @@ namespace Genesis.Log.Test
             var query = new TestQuery();
 
             mockQueryHandler
-            .Setup(x => x.Handle(query, It.IsAny<RequestContext>()))
-            .ReturnsAsync(new QueryResult<string>("OK"));
+                .Setup(x => x.Handle(query, It.IsAny<RequestContext>()))
+                .ReturnsAsync(new QueryResult<string>("OK"));
 
-            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, logSettings, mockLogger.Object);
+            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(
+                mockRequestLogger.Object,
+                mockQueryHandler.Object,
+                logSettings,
+                mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(query, Helper.Context);
@@ -41,13 +39,11 @@ namespace Genesis.Log.Test
             Assert.Equal(Messages.Success, result.Code);
         }
 
+        [Fact]
         public async Task ShouldLogIfQueryIsNotInExcludeList()
         {
-            // Arrange 
+            // Arrange
             LogSettings logSettings = new LogSettings();
-
-            // Mock<IOptionsSnapshot<LogSettings>> mockOptions = new Mock<IOptionsSnapshot<LogSettings>>();
-            // mockOptions.Setup(x => x.Value).Returns(logSettings);
 
             Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();
             Mock<ILogger<TestQuery>> mockLogger = new Mock<ILogger<TestQuery>>();
@@ -55,10 +51,14 @@ namespace Genesis.Log.Test
             var query = new TestQuery();
 
             mockQueryHandler
-            .Setup(x => x.Handle(query, It.IsAny<RequestContext>()))
-            .ReturnsAsync(new QueryResult<string>("OK"));
+                .Setup(x => x.Handle(query, It.IsAny<RequestContext>()))
+                .ReturnsAsync(new QueryResult<string>("OK"));
 
-            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, logSettings, mockLogger.Object);
+            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(
+                mockRequestLogger.Object,
+                mockQueryHandler.Object,
+                logSettings,
+                mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(query, Helper.Context);
@@ -71,14 +71,11 @@ namespace Genesis.Log.Test
         [Fact]
         public async Task ShouldNotLogIfQueryIsInExcludeList()
         {
-            // Arrange 
+            // Arrange
             LogSettings logSettings = new LogSettings
             {
                 Settings = new LogSetting[] { new LogSetting { ShouldLog = false, Name = typeof(TestQuery).Name } }
             };
-
-            // Mock<IOptionsSnapshot<LogSettings>> mockOptions = new Mock<IOptionsSnapshot<LogSettings>>();
-            // mockOptions.Setup(x => x.Value).Returns(logSettings);
 
             Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();
             Mock<ILogger<TestQuery>> mockLogger = new Mock<ILogger<TestQuery>>();
@@ -86,10 +83,14 @@ namespace Genesis.Log.Test
             var query = new TestQuery();
 
             mockQueryHandler
-            .Setup(x => x.Handle(query, It.IsAny<RequestContext>()))
-            .ReturnsAsync(new QueryResult<string>("OK"));
+                .Setup(x => x.Handle(query, It.IsAny<RequestContext>()))
+                .ReturnsAsync(new QueryResult<string>("OK"));
 
-            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, logSettings, mockLogger.Object);
+            var decorator = new LogQueryHandlerDecorator<TestQuery, string>(
+                mockRequestLogger.Object,
+                mockQueryHandler.Object,
+                logSettings,
+                mockLogger.Object);
 
             // Act
             var result = await decorator.Handle(query, Helper.Context);
@@ -98,34 +99,6 @@ namespace Genesis.Log.Test
             mockRequestLogger.Verify(x => x.Log(It.IsAny<RequestLog>()), Times.Exactly(0));
             Assert.Equal(Messages.Success, result.Code);
         }
-
-        // [Fact]
-        // public async Task ShouldFormatExceptionAsUnHandlerExceptionResult()
-        // {
-        //     // Arrange 
-        //     LogSettings logSettings = new LogSettings();
-
-        //     Mock<IOptionsSnapshot<LogSettings>> mockOptions = new Mock<IOptionsSnapshot<LogSettings>>();
-        //     mockOptions.Setup(x => x.Value).Returns(logSettings);
-
-        //     Mock<IRequestLogger> mockRequestLogger = new Mock<IRequestLogger>();
-        //     Mock<ILogger<TestQuery>> mockLogger = new Mock<ILogger<TestQuery>>();
-        //     Mock<IQueryHandler<TestQuery, string>> mockQueryHandler = new Mock<IQueryHandler<TestQuery, string>>();
-        //     var query = new TestQuery();
-
-        //     mockQueryHandler
-        //     .Setup(x => x.Handle(query, It.IsAny<RequestContext>()))
-        //     .ThrowsAsync(new Exception());
-
-        //     var decorator = new LogQueryHandlerDecorator<TestQuery, string>(mockRequestLogger.Object, mockQueryHandler.Object, mockOptions.Object, mockLogger.Object);
-
-        //     // Act
-        //     var result = await decorator.Handle(query, Helper.Context);
-
-        //     // Assert
-        //     Assert.True(result.HasError);
-        //     Assert.Equal(Constants.UnhandledException, result.Errors[0].Code);
-        // }
 
         public class TestQuery : IQuery<string> { }
     }

@@ -1,92 +1,128 @@
-# Quantic Framework
-A light weight .net core CQRS framework that helps in building web APIs with the support of the basic funtionalities 
-to help in monitoring, tracing, security etc..
+## Quantic
 
+Quantic is a lightweight **CQRS** framework for .NET that helps you build Web APIs with a consistent handler pipeline and optional cross‑cutting “decorators” (logging, caching, validation, tracing, etc.).
 
-## Getting Started
+This repo contains the core library plus optional packages and a set of unit tests.
 
-Install Github desktop and add Quantic Github repository and create a clone command to clone the code to you local machine, 
-install Visual studio (windows or Mac) based on you development configuration, go to the copied location and open the Quantic.sln
-solution, compile the code and make sure it builds successfully.
+## Packages in this repo
 
+- **`Quantic.Core`**: CQRS abstractions (`ICommand`, `IQuery<T>`, handlers, `RequestContext`, `CommandResult`/`QueryResult<T>`) and core plumbing.
+- **`Quantic.Log`**: request/response logging decorators for command/query handlers, with configurable redaction.
+- **`Quantic.Cache.InMemory` / `Quantic.Cache.Redis`**: caching decorators.
+- **`Quantic.Validation`**: validation helpers/decorators.
+- **`Quantic.Ef`**: EF helpers.
+- **`Quantic.Web`**: web helpers / composition.
+- **`Quantic.FeatureManagement`**: feature toggles.
+- **`Quantic.Trace.Elastic.Apm`**: tracing integration.
+- **`Quantic.MassTransit.RabbitMq`**: messaging integration.
 
-### Prerequisites
+## Requirements
 
-What things you need to install the software and how to install them
+- **.NET SDK**: the solution targets modern .NET (tests currently run on `net9.0`).
 
-```
-Give examples
-```
+## Build
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
+```bash
+dotnet build Quantic.sln -c Release
 ```
 
-And repeat
+## Run tests
 
-```
-until finished
-```
+All tests:
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+```bash
+dotnet test Quantic.sln -c Release
 ```
 
-### And coding style tests
+Single project (example):
 
-Explain what these tests test and why
-
-```
-Give an example
+```bash
+dotnet test test/Quantic.Log.UnitTest/Quantic.Log.UnitTest.csproj -c Release
 ```
 
-## Deployment
+## Minimal CQRS example
 
-Add additional notes about how to deploy this on a live system
+Define a command + handler:
 
-## Built With
+```csharp
+using System.Threading.Tasks;
+using Quantic.Core;
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+public sealed class CreateUser : ICommand
+{
+    public string Email { get; set; } = "";
+}
+
+public sealed class CreateUserHandler : ICommandHandler<CreateUser>
+{
+    public Task<CommandResult> Handle(CreateUser command, RequestContext context)
+    {
+        // do work...
+        return Task.FromResult(CommandResult.Success);
+    }
+}
+```
+
+Define a query + handler:
+
+```csharp
+using System.Threading.Tasks;
+using Quantic.Core;
+
+public sealed class GetUserByEmail : IQuery<UserDto?>
+{
+    public string Email { get; set; } = "";
+}
+
+public sealed class GetUserByEmailHandler : IQueryHandler<GetUserByEmail, UserDto?>
+{
+    public Task<QueryResult<UserDto?>> Handle(GetUserByEmail query, RequestContext context)
+    {
+        // read...
+        return Task.FromResult(new QueryResult<UserDto?>(null));
+    }
+}
+```
+
+## Logging (Quantic.Log)
+
+`Quantic.Log` provides handler decorators that log command/query request + response objects via `IRequestLogger`.
+
+### Field redaction (avoid logging secrets / payload bytes)
+
+You can configure redaction globally and per handler type name:
+
+```csharp
+using Quantic.Log;
+
+var logSettings = new LogSettings
+{
+    // applied to ALL requests/responses
+    GlobalRedactProperties = new[] { "ApiKey", "AccessToken", "Password", "Base64", "Bytes" },
+    RedactionMask = "***",
+
+    // per-command/query overrides
+    Settings = new[]
+    {
+        new LogSetting
+        {
+            Name = "MySensitiveCommand",
+            RedactRequestProperties = new[] { "Secret", "Token" },
+            RedactResponseProperties = new[] { "RawResponse" }
+        }
+    }
+};
+```
+
+Redaction is **recursive** and matches property names **case-insensitively**.
+
+## Repository layout
+
+- `src/`: Quantic libraries
+- `test/`: unit test projects
+- `samples/`: example applications
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+Open `Quantic.sln`, make changes in `src/`, and add/update tests under `test/`. Keep changes small and include unit tests for new behavior.
 
