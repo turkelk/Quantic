@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework> 
-    <PackageVersion>3.1.0</PackageVersion> 
+    <PackageVersion>3.2.0</PackageVersion> 
     <Authors>Turkel Gadirzade</Authors>
     <Description>Quantic framework log extension</Description>
     <PackOnBuild>true</PackOnBuild>
