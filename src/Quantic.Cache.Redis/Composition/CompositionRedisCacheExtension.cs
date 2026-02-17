@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Redis;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.DependencyInjection;
 using Quantic.Core;
 
@@ -19,7 +20,14 @@ namespace Quantic.Cache.Redis
 
             builder.Services.AddSingleton<IDistributedCache>(new RedisCache(cacheOptions));
 
-            builder.Services.AddSingleton<IQueryInfoProvider,QueryInfoProvider>();            
+            List<Type> types = new List<Type>();
+
+            foreach(var asm in builder.Assemblies)
+            {
+                types.AddRange(asm.GetTypes());
+            }
+
+            builder.Services.AddSingleton<IQueryInfoProvider>(new QueryInfoProvider(types));
 
             foreach(var service in builder.Services.ToList().Where(x=> ShouldDecorate(x)))
             {
@@ -29,10 +37,10 @@ namespace Quantic.Cache.Redis
 
             static bool ShouldDecorate(ServiceDescriptor serviceDescriptor)
             {
-                return serviceDescriptor.ServiceType.IsGenericType 
+                return serviceDescriptor.ServiceType.IsGenericType
                     && serviceDescriptor.ServiceType.GetGenericTypeDefinition() == typeof(IQueryHandler<,>)
                     && serviceDescriptor.ImplementationType?.GetCustomAttribute<DecorateRedisCacheAttribute>()!= null;
-            }   
+            }
 
             return builder;
         }

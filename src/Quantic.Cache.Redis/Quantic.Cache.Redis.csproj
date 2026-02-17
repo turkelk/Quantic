@@ -1,20 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp5.0</TargetFramework>
-    <PackageVersion>2.1.0</PackageVersion>
+    <TargetFramework>net9.0</TargetFramework>
+    <PackageVersion>3.0.0</PackageVersion>
     <Authors>Gokhan Imral,Turkel Gadirzade</Authors>
     <Description>Quantic framework redis cache extension</Description>
     <PackOnBuild>true</PackOnBuild>
-    <PackageId>Quantic.Cache.Redis</PackageId>      
+    <PackageId>Quantic.Cache.Redis</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Composition\" />
-    <Folder Include="Main\" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.0" />
+    <PackageReference Include="Quantic.Core" Version="3.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
-    <PackageReference Include="Quantic.Core" Version="2.1.0" />
-  </ItemGroup>
+
+  <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
 </Project>
